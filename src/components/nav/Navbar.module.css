@@ -2,10 +2,20 @@
 .nav {
     grid-area: n;
     background-color: beige;
-padding-top: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
-.item{
-    color: darkolivegreen;
-    margin-left: 10px;
+/*.item{*/
+/*    color: darkolivegreen;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.item a {
+    color: #688536;
+}
+
+.item a.active {
+    color: #b1ad04;
 }
