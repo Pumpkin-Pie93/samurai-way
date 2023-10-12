@@ -1,2 +1,32 @@
 
+.dialogs {
+    border: 2px solid pink;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    margin: 10px;
+}
 
+.dialogsItems {
+    border: 1px solid #e1c1c6;
+    margin: 2px;
+    padding: 4px;
+    color: #706e6f;
+}
+
+.dialog {
+    color: #e1c1c6;
+}
+.dialogsItems .active {
+    color: #ce117d;
+}
+
+.messages {
+    border: 1px solid #e1c1c6;
+    margin: 2px;
+    padding: 4px;
+
+}
+
+.message {
+
+}
