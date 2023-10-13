@@ -1,6 +1,6 @@
 
 .posts {
-
+    margin: 10px;
 }
 
 .item{
@@ -9,4 +9,6 @@
     display: flex;
 }
 
-
+.myPosts {
+    margin: 10px;
+}

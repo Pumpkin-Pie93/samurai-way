@@ -1,0 +1,10 @@
+.adam {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0 -160px;
+}
+
+.description {
+    margin: 10px;
+}
