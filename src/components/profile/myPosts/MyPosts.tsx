@@ -5,11 +5,17 @@ import {Post} from "./post/Post";
 export const MyPosts = () => {
     return (
         <div>
-            <div className={s.myPosts}>My posts
+            <div className={s.myPosts}>
+                <h3>My posts</h3>
                 <div >
-                    <textarea></textarea>
-                    <button>add post</button>
-                    <button>remove post</button>
+                    <div>
+                        <textarea placeholder={'Enter your text here'}></textarea>
+                    </div>
+                    <div className={s.btnWrapper}>
+                        <button>add post</button>
+                        <button>remove post</button>
+                    </div>
+
                 </div>
 
             </div>
