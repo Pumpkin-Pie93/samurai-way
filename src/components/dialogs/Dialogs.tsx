@@ -1,47 +1,39 @@
 import React from 'react';
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
+import {DialogItem} from "./dialogItem/DialogItem";
+import {Message} from "./message/Message";
 
 
-type DialogItemPropsType = {
-    name: string
-    id: number
-}
+const dialogsData = [
+    {id: 1, name: 'Kiryll'},
+    {id: 2, name: 'Veronica'},
+    {id: 3, name: 'Vika'},
+    {id: 4, name: 'Tanya'},
+    {id: 5, name: 'Alya'}
+]
 
-type MessageType = {
-    message: string
-}
-const DialogItem = (props:DialogItemPropsType) => {
-    let path = '/dialogs/' + props.id
-    return (
-        <div className={s.dialog + ' ' + s.active}>
-            <NavLink to ={path}>{props.name}</NavLink>
-        </div>
-    )
-}
+const messagesData = [
+    {id: 1, message: 'What\'s up?'},
+    {id: 2, message:  'Do you go to the party tonight?'},
+    {id: 3, message: 'I\'ve bot something special!'},
+    {id: 4, message: 'Polinaaaa!, Go to Hooka'},
+    {id: 5, message: 'That is quite'}
+]
 
-const Message = (props:MessageType) => {
-    return (
-        <div className={s.message}>{props.message}</div>
-    )
-}
+const dialogs = dialogsData.map( dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
+const messages = messagesData.map( message => <Message message={message.message}/>)
 
 export const Dialogs = (props: any) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-              <DialogItem name={'Veronica'} id={1}/>
-              <DialogItem name={'Vika'} id={2}/>
-              <DialogItem name={'Tanya'} id={3}/>
-              <DialogItem name={'Kiryll'} id={4}/>
-              <DialogItem name={'Alya'} id={5}/>
+                {dialogs}
             </div>
             <div className={s.messages}>
-                <Message message={'Hi'}/>
-                <Message message={'How are you?'}/>
-                <Message message={'What are you doing? Maybe we can meet today?'}/>
+                {messages}
             </div>
         </div>
 
-)
+    )
 }

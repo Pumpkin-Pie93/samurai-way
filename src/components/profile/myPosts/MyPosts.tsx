@@ -1,8 +1,17 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./post/Post";
+import {postsData, PostsDataType} from "../Profile";
 
-export const MyPosts = () => {
+type PostsPropsType = {
+    data: PostsDataType[]
+}
+
+
+export const MyPosts = (props: PostsPropsType) => {
+
+    const posts = props.data.map( p => <Post message={p.message} likes={p.likes}/>)
+
     return (
         <div>
             <div className={s.myPosts}>
@@ -20,8 +29,7 @@ export const MyPosts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post message={'Hi,it\'s my first post'}/>
-                <Post message={'How are you?'}/>
+                {posts}
             </div>
         </div>
 

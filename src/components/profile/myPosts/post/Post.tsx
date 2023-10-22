@@ -9,7 +9,7 @@ export const Post = (props: any) => {
                      src={"https://upload.wikimedia.org/wikipedia/commons/0/08/Sibyl_of_Delphi_-_Sistine_Chapel_-_closeup.JPG"}/>
                 {props.message}
                 <div>
-                    <span>like</span>
+                    <span>likes: {props.likes}</span>
                 </div>
             </div>
         </div>
