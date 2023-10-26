@@ -1,0 +1,37 @@
+.imgAva img{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.friendsWrapper {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+/*border: 2px solid red;*/
+}
+
+.friendAvaAndName {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*border: 2px solid #68008b;*/
+}
+
+.titleAndItems h1{
+    text-align: left;
+    font-family: "Sitka Banner",sans-serif;
+    font-size: 3rem;
+    margin-bottom: 5px;
+    color: #688536;
+}
+
+.titleAndItems {
+    margin-top: 100px;
+    margin-bottom: 290px;
+}

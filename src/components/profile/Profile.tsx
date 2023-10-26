@@ -2,11 +2,11 @@ import React from 'react';
 import s from './Profile.module.css';
 import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {DialogsDataType, MessagesDataType, PostsDataType} from "../../index";
+import {PostItemType, PostsPageType} from "../../redux/State";
 
 
 export type ProfilePropsType = {
-    posts:PostsDataType[]
+    posts: PostItemType[]
 }
 
 export const Profile = (props:ProfilePropsType) => {
