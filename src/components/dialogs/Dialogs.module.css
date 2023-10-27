@@ -42,3 +42,36 @@
     margin: 3px;
     object-fit: cover;
 }
+.textAreaAndButton {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    & button {
+        width: 20%;
+        margin-top: 5px;
+        padding: 3px;
+        background-color: rgba(229, 203, 203, 0.7);
+        /*border: 1px solid pink;*/
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: lighter;
+        color: #353333;
+    }
+
+  & button:hover {
+        color: #a09c9c;
+        background-color: transparent;
+      border: 1px solid #898989;
+
+  }
+    & textarea {
+        display: inline-block;
+        width: 50%;
+        height: 80%;
+        border: 1px solid dimgrey;
+        border-radius: 5px;
+        overflow-wrap: unset;
+    }
+}
