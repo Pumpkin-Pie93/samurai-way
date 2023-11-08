@@ -2,14 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state, StateType} from "./redux/State";
+import {state, StateType, addPost} from "./redux/State";
+import {rerenderEntireTree} from "./Rerender";
 
 
-type  AppPropsType = {
-    state: StateType
-}
+rerenderEntireTree(state)
 
-ReactDOM.render(
-        <App state={state}/>,
-  document.getElementById('root')
-);
+//
+// type  AppPropsType = {
+//     state: StateType
+//     addPost: ()=> void
+// }
+
+// ReactDOM.render(
+//         <App state={state} addPost={addPost}/>,
+//   document.getElementById('root')
+// );
+

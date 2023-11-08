@@ -7,6 +7,9 @@ import {PostItemType} from "../../../redux/State";
 
 type MyPostsPropsType = {
     posts: PostItemType[]
+    addPost: ()=> void
+    updateNewPostText:(newText: any) => void
+    newPostText: any
 }
 
 
@@ -14,12 +17,20 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     const posts = props.posts.map( (p, index)=> (<Post key={index} message={p.message} likes={p.likes}/>))
 
-    const newPost = useRef<HTMLTextAreaElement>(null)
+    const newPostText = useRef<HTMLTextAreaElement>(null)
+    // let newPostText = React.createRef()
 
     const addNewPost = () => {
-    if(newPost.current !== null) {
-    alert(`Вы добавили пост: ${newPost.current.value}`)
-}
+        props.addPost()
+        props.updateNewPostText('')
+    }
+
+
+    const onChangeHandler = () => {
+        if(newPostText.current !== null ) {
+        let newText = newPostText.current.value
+            props.updateNewPostText(newText)
+    }
     }
 
     return (
@@ -28,7 +39,10 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 <h3>My posts</h3>
                 <div >
                     <div>
-                        <textarea ref={newPost} placeholder={'Enter your text here'}></textarea>
+                        <textarea ref={newPostText}
+                                  onChange={onChangeHandler}
+                                  value={props.newPostText}
+                                  placeholder={'Enter your text here'}></textarea>
                     </div>
                     <div className={s.btnWrapper}>
                         <button onClick={addNewPost}>add post</button>

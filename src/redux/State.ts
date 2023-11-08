@@ -1,5 +1,8 @@
+import {rerenderEntireTree} from "../Rerender";
+
 export type PostsPageType = {
     postsData: PostItemType[]
+    newPostText: any
 }
 export type PostItemType = {
     id: number,
@@ -43,7 +46,8 @@ export const state = {
         postsData: [
             {id: 1, message: 'Hi,it\'s my first post', likes: 33},
             {id: 2, message: 'How are you?', likes: 17}
-        ]
+        ],
+        newPostText: 'it-kamasutra'
     },
     dialogsPage: {
         messagesData: [
@@ -68,4 +72,16 @@ export const state = {
             {id: 3, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'}
         ]
     }
+}
+
+export const addPost = () => {
+    let newPost = {id: state.postsPage.postsData.length, message: state.postsPage.newPostText, likes: 0}
+    state.postsPage.postsData.push(newPost)
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: any) => {
+    state.postsPage.newPostText = newText
+    rerenderEntireTree(state)
+
 }
