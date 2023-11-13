@@ -1,5 +1,70 @@
-import {rerenderEntireTree} from "../Rerender";
 
+export let store = {
+    _state: {
+
+        postsPage: {
+            postsData: [
+                {id: 1, message: 'Hi,it\'s my first post', likes: 33},
+                {id: 2, message: 'How are you?', likes: 17}
+            ],
+            newPostText: 'it-kamasutra'
+        },
+        dialogsPage: {
+            messagesData: [
+                {id: 1, message: 'What\'s up?'},
+                {id: 2, message: 'Do you go to the party tonight?'},
+                {id: 3, message: 'I\'ve bot something special!'},
+                {id: 4, message: 'Polinaaaa!, Go to Hooka'},
+                {id: 5, message: 'That is quite'}
+            ],
+            dialogsData: [
+                {id: 1, name: 'Kiryll', avatar: 'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
+                {id: 2, name: 'Veronica',avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
+                {id: 3, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+                {id: 4, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
+                {id: 5, name: 'Alya',avatar:'https://miro.medium.com/v2/resize:fit:1192/1*xPM9rgDuQH1w056QP7Ttgw.jpeg'}
+            ]
+        },
+        sidebar: {
+            friends : [
+                {id: 1, name: 'Veronica', avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
+                {id: 2, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+                {id: 3, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'}
+            ]
+        }
+    },
+    rerenderEntireTree () {
+        console.log('state changed')
+    },
+    getState () {
+        return this._state
+    },
+    addPost () {
+        let newPost = {id: this._state.postsPage.postsData.length, message: this._state.postsPage.newPostText, likes: 0}
+        this._state.postsPage.postsData.push(newPost)
+        this.rerenderEntireTree()
+    },
+    updateNewPostText (newText: any)  {
+        this._state.postsPage.newPostText = newText
+        this.rerenderEntireTree()
+
+    },
+    subscribe (observer: any)  {
+        this.rerenderEntireTree = observer
+    }
+
+}
+
+// window.store = store
+
+export type StoreType = {
+    _state: StateType
+    rerenderEntireTree: () => void
+    getState: () => StateType
+    addPost: () => void
+    updateNewPostText: (newText: any) => void
+    subscribe: (observer: any) => void
+}
 export type PostsPageType = {
     postsData: PostItemType[]
     newPostText: any
@@ -28,7 +93,6 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SideBarType
 }
-
 export type SideBarType = {
     friends: FriendsItemsType[]
 }
@@ -40,48 +104,56 @@ export type FriendsItemsType = {
 
 
 
-export const state = {
+// let rerenderEntireTree = () => {
+//     console.log('state changed')
+// }
 
-    postsPage: {
-        postsData: [
-            {id: 1, message: 'Hi,it\'s my first post', likes: 33},
-            {id: 2, message: 'How are you?', likes: 17}
-        ],
-        newPostText: 'it-kamasutra'
-    },
-    dialogsPage: {
-        messagesData: [
-            {id: 1, message: 'What\'s up?'},
-            {id: 2, message: 'Do you go to the party tonight?'},
-            {id: 3, message: 'I\'ve bot something special!'},
-            {id: 4, message: 'Polinaaaa!, Go to Hooka'},
-            {id: 5, message: 'That is quite'}
-        ],
-        dialogsData: [
-            {id: 1, name: 'Kiryll', avatar: 'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
-            {id: 2, name: 'Veronica',avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
-            {id: 3, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-            {id: 4, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
-            {id: 5, name: 'Alya',avatar:'https://miro.medium.com/v2/resize:fit:1192/1*xPM9rgDuQH1w056QP7Ttgw.jpeg'}
-        ]
-    },
-    sidebar: {
-        friends : [
-            {id: 1, name: 'Veronica', avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
-            {id: 2, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-            {id: 3, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'}
-        ]
-    }
-}
+// export const state = {
+//
+//     postsPage: {
+//         postsData: [
+//             {id: 1, message: 'Hi,it\'s my first post', likes: 33},
+//             {id: 2, message: 'How are you?', likes: 17}
+//         ],
+//         newPostText: 'it-kamasutra'
+//     },
+//     dialogsPage: {
+//         messagesData: [
+//             {id: 1, message: 'What\'s up?'},
+//             {id: 2, message: 'Do you go to the party tonight?'},
+//             {id: 3, message: 'I\'ve bot something special!'},
+//             {id: 4, message: 'Polinaaaa!, Go to Hooka'},
+//             {id: 5, message: 'That is quite'}
+//         ],
+//         dialogsData: [
+//             {id: 1, name: 'Kiryll', avatar: 'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
+//             {id: 2, name: 'Veronica',avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
+//             {id: 3, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+//             {id: 4, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
+//             {id: 5, name: 'Alya',avatar:'https://miro.medium.com/v2/resize:fit:1192/1*xPM9rgDuQH1w056QP7Ttgw.jpeg'}
+//         ]
+//     },
+//     sidebar: {
+//         friends : [
+//             {id: 1, name: 'Veronica', avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
+//             {id: 2, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+//             {id: 3, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'}
+//         ]
+//     }
+// }
 
-export const addPost = () => {
-    let newPost = {id: state.postsPage.postsData.length, message: state.postsPage.newPostText, likes: 0}
-    state.postsPage.postsData.push(newPost)
-    rerenderEntireTree(state)
-}
+// export const addPost = () => {
+//     let newPost = {id: state.postsPage.postsData.length, message: state.postsPage.newPostText, likes: 0}
+//     state.postsPage.postsData.push(newPost)
+//     rerenderEntireTree()
+// }
 
-export const updateNewPostText = (newText: any) => {
-    state.postsPage.newPostText = newText
-    rerenderEntireTree(state)
+// export const updateNewPostText = (newText: any) => {
+//     state.postsPage.newPostText = newText
+//     rerenderEntireTree()
+//
+// }
 
-}
+// export const subscribe = (observer: any) => {
+//     rerenderEntireTree = observer
+// }
