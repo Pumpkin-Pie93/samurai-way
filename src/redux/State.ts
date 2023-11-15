@@ -1,3 +1,5 @@
+import {AllActionsTypes, profileReducer} from "./Profile-reducer";
+import {AllAT, dialogReducer} from "./Dialog-reducer";
 
 export let store: StoreType = {
     _state: {
@@ -56,23 +58,11 @@ export let store: StoreType = {
     },
 
     dispatch (action) {
-        if(action.type === 'ADD-POST') {
-            let newPost = {id: this._state.postsPage.postsData.length, message: this._state.postsPage.newPostText, likes: 0}
-            this._state.postsPage.postsData.push(newPost)
-            this._callSubscriber()
-        } else if(action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.postsPage.newPostText = action.newText
-            this._callSubscriber()
-        } else if(action.type === 'UPDATE_NEW_MESSAGE_BODY') {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._callSubscriber()
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._callSubscriber()
+        this._state.postsPage = profileReducer(this._state.postsPage, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
 
+        this._callSubscriber()
 
-        }
     }
 }
 
@@ -84,6 +74,16 @@ export const AddNewPostAC = () => {
 export const UpdateNewPostTextAC = (newText: string) => {
     return {
         type:'UPDATE-NEW-POST-TEXT', newText : newText
+    } as const
+}
+export const SendMessageAC = () => {
+    return {
+        type:'SEND-MESSAGE'
+    } as const
+}
+export const UpdateNewMessageBodyAC = (body: string) => {
+    return {
+        type:'UPDATE_NEW_MESSAGE_BODY', body
     } as const
 }
 // window.store = store

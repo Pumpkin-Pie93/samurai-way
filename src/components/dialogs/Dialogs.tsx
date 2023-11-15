@@ -1,13 +1,21 @@
-import React, {useReducer, useRef} from 'react';
+import React, {ChangeEvent, useReducer, useRef} from 'react';
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
-import {DialogsDataType, MessagesDataType} from "../../redux/State";
+import {
+    DialogsDataType,
+    MessagesDataType,
+    SendMessageAC,
+    StateType,
+    StoreType,
+    UpdateNewMessageBodyAC
+} from "../../redux/State";
 
 export type DialogsPropsType = {
     messages: MessagesDataType[]
     dialogs: DialogsDataType[]
+    store: StoreType
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -17,10 +25,16 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     let textAreaRef = useRef<HTMLTextAreaElement>(null)
 
+    let newMessageBody = props.store.getState().dialogsPage.newMessageBody
+
     const onClickHandler = () => {
         if (textAreaRef.current !== null) {
-            alert(textAreaRef.current.value)
+            props.store.dispatch(SendMessageAC())
         }
+    }
+    const onNewMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+         let body = e.currentTarget.value
+        props.store.dispatch(UpdateNewMessageBodyAC(body))
     }
 
     return (
@@ -30,10 +44,13 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 <div>
-                    {messages}
+                    <div>{messages}</div>
                 </div>
                 <div className={s.textAreaAndButton}>
-                    <textarea ref={textAreaRef}/>
+                    <textarea ref={textAreaRef}
+                              onChange={onNewMessageHandler}
+                              placeholder={'Enter your message'}
+                              value={newMessageBody}/>
                     <button onClick={onClickHandler}>add message</button>
                 </div>
 

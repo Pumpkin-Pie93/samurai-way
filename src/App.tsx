@@ -25,15 +25,17 @@ function App(props: AppPropstype) {
                 <Navbar friends={props.store.getState().sidebar.friends}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path ='/dialogs' element={<Dialogs dialogs={props.store.getState().dialogsPage.dialogsData}
-                                                                  messages={props.store.getState().dialogsPage.messagesData}/>}/>
-                        <Route path ='/profile' element={<Profile  posts={props.store.getState().postsPage.postsData}
-                                                                   dispatch={props.dispatch}
-                                                                   newPostText={props.store.getState().postsPage.newPostText}
+                        <Route path='/dialogs'
+                               element={<Dialogs dialogs={props.store.getState().dialogsPage.dialogsData}
+                                                 messages={props.store.getState().dialogsPage.messagesData}
+                                                 store={props.store}/>}/>
+                        <Route path='/profile' element={<Profile posts={props.store.getState().postsPage.postsData}
+                                                                 dispatch={props.dispatch}
+                                                                 newPostText={props.store.getState().postsPage.newPostText}
                         />}/>
-                        <Route path ='/news' element={<News/>}/>
-                        <Route path ='/music' element={<Music/>}/>
-                        <Route path ='/settings' element={<Settings/>}/>
+                        <Route path='/news' element={<News/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
                     </Routes>
                 </div>
             </div>
