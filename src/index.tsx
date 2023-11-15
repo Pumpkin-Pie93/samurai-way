@@ -1,32 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import {StateType, store, StoreType} from "./redux/State";
+import App from "./App";
 
-type RerenderPropsType = {
-    store: StoreType
-}
-
-
-let rerenderEntireTree = (state: StateType) => {
+export const renderTree = (store: StoreType) => {
     ReactDOM.render(
-        <App state={state} addPost={store.addPost} updateNewPostText={store.updateNewPostText}/>,
+        <App store={store} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }
-rerenderEntireTree(store.getState())
+renderTree(store)
+store.subscribe(()=>renderTree(store))
 
-store.subscribe(rerenderEntireTree)
-
-//
-// type  AppPropsType = {
-//     state: StateType
-//     addPost: ()=> void
-// }
-
-// ReactDOM.render(
-//         <App state={state} addPost={addPost}/>,
-//   document.getElementById('root')
-// );
+// serviceWorker.unregister
 

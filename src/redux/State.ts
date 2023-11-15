@@ -1,5 +1,5 @@
 
-export let store = {
+export let store: StoreType = {
     _state: {
 
         postsPage: {
@@ -23,7 +23,8 @@ export let store = {
                 {id: 3, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
                 {id: 4, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
                 {id: 5, name: 'Alya',avatar:'https://miro.medium.com/v2/resize:fit:1192/1*xPM9rgDuQH1w056QP7Ttgw.jpeg'}
-            ]
+            ],
+            newMessageBody: '',
         },
         sidebar: {
             friends : [
@@ -33,37 +34,68 @@ export let store = {
             ]
         }
     },
-    rerenderEntireTree () {
+    _callSubscriber() {
         console.log('state changed')
     },
     getState () {
         return this._state
     },
+    subscribe (observer)  {
+        this._callSubscriber = observer
+    },
+
     addPost () {
         let newPost = {id: this._state.postsPage.postsData.length, message: this._state.postsPage.newPostText, likes: 0}
         this._state.postsPage.postsData.push(newPost)
-        this.rerenderEntireTree()
+        this._callSubscriber()
     },
-    updateNewPostText (newText: any)  {
+    updateNewPostText (newText)  {
         this._state.postsPage.newPostText = newText
-        this.rerenderEntireTree()
+        this._callSubscriber()
 
     },
-    subscribe (observer: any)  {
-        this.rerenderEntireTree = observer
-    }
 
+    dispatch (action) {
+        if(action.type === 'ADD-POST') {
+            let newPost = {id: this._state.postsPage.postsData.length, message: this._state.postsPage.newPostText, likes: 0}
+            this._state.postsPage.postsData.push(newPost)
+            this._callSubscriber()
+        } else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.postsPage.newPostText = action.newText
+            this._callSubscriber()
+        } else if(action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber()
+        } else if (action.type === 'SEND-MESSAGE') {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._callSubscriber()
+
+
+        }
+    }
 }
 
+export const AddNewPostAC = () => {
+    return {
+        type:'ADD-POST'
+    } as const
+}
+export const UpdateNewPostTextAC = (newText: string) => {
+    return {
+        type:'UPDATE-NEW-POST-TEXT', newText : newText
+    } as const
+}
 // window.store = store
 
 export type StoreType = {
     _state: StateType
-    rerenderEntireTree: () => void
+    _callSubscriber: () => void
     getState: () => StateType
     addPost: () => void
-    updateNewPostText: (newText: any) => void
-    subscribe: (observer: any) => void
+    updateNewPostText: (newText: string) => void
+    subscribe: (observer: ()=> void) => void
+    dispatch: (action: any) => void
 }
 export type PostsPageType = {
     postsData: PostItemType[]
@@ -86,7 +118,7 @@ export type DialogsDataType = {
 export type DialogsPageType = {
     messagesData: MessagesDataType[]
     dialogsData: DialogsDataType[]
-
+    newMessageBody: string
 }
 export type StateType = {
     postsPage:  PostsPageType

@@ -1,14 +1,15 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./post/Post";
-import {PostItemType} from "../../../redux/State";
+import {AddNewPostAC, PostItemType, UpdateNewPostTextAC} from "../../../redux/State";
 // import {PostsDataType} from "../../../index";
 // import {postsData, PostsDataType} from "../Profile";
 
+
+
 type MyPostsPropsType = {
     posts: PostItemType[]
-    addPost: ()=> void
-    updateNewPostText:(newText: any) => void
+    dispatch: (action:any) => void
     newPostText: any
 }
 
@@ -21,15 +22,15 @@ export const MyPosts = (props: MyPostsPropsType) => {
     // let newPostText = React.createRef()
 
     const addNewPost = () => {
-        props.addPost()
-        props.updateNewPostText('')
+        props.dispatch(AddNewPostAC())
+        props.dispatch(UpdateNewPostTextAC(''))
     }
 
 
     const onChangeHandler = () => {
         if(newPostText.current !== null ) {
         let newText = newPostText.current.value
-            props.updateNewPostText(newText)
+            props.dispatch(UpdateNewPostTextAC(newText))
     }
     }
 
