@@ -1,6 +1,8 @@
-import {AddNewPostAC, UpdateNewPostTextAC} from "../../../redux/State";
+import {AddNewPostAC, PostItemType, UpdateNewPostTextAC} from "../../../redux/State";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
 
 
 // type MyPostsPropsType = {
@@ -30,14 +32,25 @@ import {connect} from "react-redux";
 //     );
 // };
 
-let mapStateToProps = (state: any) => {
+
+type MapStatePropsType = {
+    posts: PostItemType[]
+    newPostText: string
+}
+
+type MapDispatchPropsType = {
+    updateNewPostText: (newText: string) => void,
+    addPost: () => void
+}
+
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         posts: state.postsPage.postsData,
         newPostText: state.postsPage.newPostText,
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         updateNewPostText: (newText: string) => {
             dispatch(UpdateNewPostTextAC(newText))

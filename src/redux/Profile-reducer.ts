@@ -18,7 +18,7 @@ const initialState = {
     newPostText: 'it-kamasutra'
 }
 
-export const profileReducer = (state: PostsPageType = initialState,action: AllActionsTypes) => {
+export const profileReducer = (state: PostsPageType = initialState,action: AllActionsTypes): PostsPageType => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {id: state.postsData.length, message: state.newPostText, likes: 0}

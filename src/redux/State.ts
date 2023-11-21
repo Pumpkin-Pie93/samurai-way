@@ -99,7 +99,7 @@ export type StoreType = {
 }
 export type PostsPageType = {
     postsData: PostItemType[]
-    newPostText: any
+    newPostText: string
 }
 export type PostItemType = {
     id: number,

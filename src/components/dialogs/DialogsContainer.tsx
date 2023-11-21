@@ -1,6 +1,8 @@
-import {SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/State";
+import {DialogsDataType, MessagesDataType, SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/State";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
 // export const DialogsContainer = () => {
 //
@@ -23,7 +25,18 @@ import {connect} from "react-redux";
 //     />)
 // }
 
-let mapStateToProps = (state: any) => {
+type MapStatePropsType = {
+    messages: MessagesDataType[]
+        dialogs: DialogsDataType[]
+        newMessageBody: string
+}
+
+type MapDispatchPropsType = {
+    sendMessage: () => void,
+    updateNewMessageBody: (body: string) => void
+}
+
+let mapStateToProps = (state: AppStateType):MapStatePropsType => {
     return {
         messages: state.dialogsPage.messagesData,
         dialogs: state.dialogsPage.dialogsData,
@@ -31,7 +44,7 @@ let mapStateToProps = (state: any) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         sendMessage: () => {
             dispatch(SendMessageAC())
