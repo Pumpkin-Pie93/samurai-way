@@ -10,7 +10,15 @@ type UpdateNewPostTextAT = {
 
 export type AllActionsTypes = AddPostAT | UpdateNewPostTextAT
 
-export const profileReducer = (state: PostsPageType,action: AllActionsTypes) => {
+const initialState = {
+    postsData: [
+        {id: 1, message: 'Hi,it\'s my first post', likes: 33},
+        {id: 2, message: 'How are you?', likes: 17}
+    ],
+    newPostText: 'it-kamasutra'
+}
+
+export const profileReducer = (state: PostsPageType = initialState,action: AllActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {id: state.postsData.length, message: state.newPostText, likes: 0}

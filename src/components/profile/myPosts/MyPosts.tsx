@@ -2,17 +2,13 @@ import React, {useRef} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./post/Post";
 import {AddNewPostAC, PostItemType, UpdateNewPostTextAC} from "../../../redux/State";
-// import {PostsDataType} from "../../../index";
-// import {postsData, PostsDataType} from "../Profile";
-
-
 
 type MyPostsPropsType = {
+    updateNewPostText: (newText: string) => void
+    addPost: () => void
     posts: PostItemType[]
-    dispatch: (action:any) => void
-    newPostText: any
+    newPostText: string
 }
-
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
@@ -22,15 +18,14 @@ export const MyPosts = (props: MyPostsPropsType) => {
     // let newPostText = React.createRef()
 
     const addNewPost = () => {
-        props.dispatch(AddNewPostAC())
-        props.dispatch(UpdateNewPostTextAC(''))
-    }
+        props.addPost()
 
+    }
 
     const onChangeHandler = () => {
         if(newPostText.current !== null ) {
         let newText = newPostText.current.value
-            props.dispatch(UpdateNewPostTextAC(newText))
+        props.updateNewPostText(newText)
     }
     }
 

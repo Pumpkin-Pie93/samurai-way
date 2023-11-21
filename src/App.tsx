@@ -8,10 +8,12 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Music} from "./components/music/Music";
 import {News} from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
-import {store, StateType, StoreType} from "./redux/State";
+import { StateType, StoreType} from "./redux/State";
+import {store} from "./redux/redux-store";
 
 type AppPropstype = {
-    store: StoreType
+    store: any
+    state: StateType
     dispatch: (action: any) => void
 
 }
@@ -19,7 +21,6 @@ type AppPropstype = {
 
 function App(props: AppPropstype) {
     return (
-        <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar friends={props.store.getState().sidebar.friends}/>
@@ -29,17 +30,18 @@ function App(props: AppPropstype) {
                                element={<Dialogs dialogs={props.store.getState().dialogsPage.dialogsData}
                                                  messages={props.store.getState().dialogsPage.messagesData}
                                                  store={props.store}/>}/>
-                        <Route path='/profile' element={<Profile posts={props.store.getState().postsPage.postsData}
-                                                                 dispatch={props.dispatch}
-                                                                 newPostText={props.store.getState().postsPage.newPostText}
+                        <Route path='/profile' element={<Profile store={props.store}
                         />}/>
+                        {/*<Route path='/profile' element={<Profile posts={props.store.getState().postsPage.postsData}*/}
+                        {/*                                         dispatch={props.store.dispatch}*/}
+                        {/*                                         newPostText={props.store.getState().postsPage.newPostText}*/}
+                        {/*/>}/>*/}
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 

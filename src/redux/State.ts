@@ -1,7 +1,7 @@
 import {AllActionsTypes, profileReducer} from "./Profile-reducer";
 import {AllAT, dialogReducer} from "./Dialog-reducer";
 
-export let store: StoreType = {
+ let store: StoreType = {
     _state: {
 
         postsPage: {
@@ -134,7 +134,7 @@ export type FriendsItemsType = {
     avatar:string
 }
 
-
+export default store
 
 // let rerenderEntireTree = () => {
 //     console.log('state changed')
