@@ -15,7 +15,9 @@ import {
 export type DialogsPropsType = {
     messages: MessagesDataType[]
     dialogs: DialogsDataType[]
-    store: StoreType
+    newMessageBody: string
+    sendMessage: () => void
+    updateNewMessageBody: (body:string)=> void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -24,17 +26,16 @@ export const Dialogs = (props: DialogsPropsType) => {
     const messages = props.messages.map(message => <Message message={message.message}/>)
 
     let textAreaRef = useRef<HTMLTextAreaElement>(null)
-
-    let newMessageBody = props.store.getState().dialogsPage.newMessageBody
+    let newMessageBody = props.newMessageBody
 
     const onClickHandler = () => {
         if (textAreaRef.current !== null) {
-            props.store.dispatch(SendMessageAC())
+            props.sendMessage()
         }
     }
     const onNewMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
          let body = e.currentTarget.value
-        props.store.dispatch(UpdateNewMessageBodyAC(body))
+        props.updateNewMessageBody(body)
     }
 
     return (

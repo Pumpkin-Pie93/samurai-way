@@ -1,61 +1,45 @@
-import React, {ChangeEvent, useReducer, useRef} from 'react';
-import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import {DialogItem} from "./dialogItem/DialogItem";
-import {Message} from "./message/Message";
-import {
-    DialogsDataType,
-    MessagesDataType,
-    SendMessageAC,
-    StateType,
-    StoreType,
-    UpdateNewMessageBodyAC
-} from "../../redux/State";
+import {SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/State";
+import {Dialogs} from "./Dialogs";
+import {connect} from "react-redux";
 
-export type DialogsPropsType = {
-    messages: MessagesDataType[]
-    dialogs: DialogsDataType[]
-    store: StoreType
+// export const DialogsContainer = () => {
+//
+//     // let textAreaRef = useRef<HTMLTextAreaElement>(null)
+//
+//     let newMessageBody = store.getState().dialogsPage.newMessageBody
+//
+//     const onClickHandler = () => store.dispatch(SendMessageAC())
+//     }
+//     const onNewMessageHandler = (body:string) => {
+//         store.dispatch(UpdateNewMessageBodyAC(body))
+//     }
+//
+//     return (<Dialogs messages={store.getState().dialogsPage.messagesData}
+//                     dialogs={store.getState().dialogsPage.dialogsData}
+//                     newMessageBody={newMessageBody}
+//                     sendMessage={onClickHandler}
+//                     updateNewMessageBody={onNewMessageHandler}
+//
+//     />)
+// }
+
+let mapStateToProps = (state: any) => {
+    return {
+        messages: state.dialogsPage.messagesData,
+        dialogs: state.dialogsPage.dialogsData,
+        newMessageBody: state.dialogsPage.newMessageBody
+    }
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
-
-    const dialogs = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
-    const messages = props.messages.map(message => <Message message={message.message}/>)
-
-    let textAreaRef = useRef<HTMLTextAreaElement>(null)
-
-    let newMessageBody = props.store.getState().dialogsPage.newMessageBody
-
-    const onClickHandler = () => {
-        if (textAreaRef.current !== null) {
-            props.store.dispatch(SendMessageAC())
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        sendMessage: () => {
+            dispatch(SendMessageAC())
+        },
+        updateNewMessageBody: (body: string) => {
+            dispatch(UpdateNewMessageBodyAC(body))
         }
     }
-    const onNewMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-         let body = e.currentTarget.value
-        props.store.dispatch(UpdateNewMessageBodyAC(body))
-    }
-
-    return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                {dialogs}
-            </div>
-            <div className={s.messages}>
-                <div>
-                    <div>{messages}</div>
-                </div>
-                <div className={s.textAreaAndButton}>
-                    <textarea ref={textAreaRef}
-                              onChange={onNewMessageHandler}
-                              placeholder={'Enter your message'}
-                              value={newMessageBody}/>
-                    <button onClick={onClickHandler}>add message</button>
-                </div>
-
-            </div>
-        </div>
-
-    )
 }
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
