@@ -11,14 +11,9 @@ import {
     StoreType,
     UpdateNewMessageBodyAC
 } from "../../redux/State";
+import {DialogsPropsType} from "./DialogsContainer";
 
-export type DialogsPropsType = {
-    messages: MessagesDataType[]
-    dialogs: DialogsDataType[]
-    newMessageBody: string
-    sendMessage: () => void
-    updateNewMessageBody: (body:string)=> void
-}
+
 
 export const Dialogs = (props: DialogsPropsType) => {
 

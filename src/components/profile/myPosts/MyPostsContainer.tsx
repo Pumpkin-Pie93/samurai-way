@@ -42,6 +42,7 @@ type MapDispatchPropsType = {
     updateNewPostText: (newText: string) => void,
     addPost: () => void
 }
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
