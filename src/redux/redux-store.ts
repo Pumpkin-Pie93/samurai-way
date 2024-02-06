@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, legacy_createStore} from "redux";
 import {dialogReducer} from "./Dialog-reducer";
 import {profileReducer} from "./Profile-reducer";
 import {sidebarReducer} from "./Sidebar-reducer";
@@ -12,4 +12,7 @@ let rootReducer = combineReducers({
 export type rootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<rootReducerType>
 
-export let store = createStore(rootReducer)
+
+export let store = legacy_createStore(rootReducer)
+
+// window.store = store

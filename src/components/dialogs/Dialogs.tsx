@@ -17,8 +17,8 @@ import {DialogsPropsType} from "./DialogsContainer";
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogs = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
-    const messages = props.messages.map(message => <Message message={message.message}/>)
+    const dialogs = props.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
+    const messages = props.messages.map(message => <Message key={message.id} message={message.message}/>)
 
     let textAreaRef = useRef<HTMLTextAreaElement>(null)
     let newMessageBody = props.newMessageBody
@@ -44,6 +44,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 </div>
                 <div className={s.textAreaAndButton}>
                     <textarea ref={textAreaRef}
+                              name={'messageTextArea'}
                               onChange={onNewMessageHandler}
                               placeholder={'Enter your message'}
                               value={newMessageBody}/>

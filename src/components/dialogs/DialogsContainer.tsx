@@ -4,27 +4,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
-// export const DialogsContainer = () => {
-//
-//     // let textAreaRef = useRef<HTMLTextAreaElement>(null)
-//
-//     let newMessageBody = store.getState().dialogsPage.newMessageBody
-//
-//     const onClickHandler = () => store.dispatch(SendMessageAC())
-//     }
-//     const onNewMessageHandler = (body:string) => {
-//         store.dispatch(UpdateNewMessageBodyAC(body))
-//     }
-//
-//     return (<Dialogs messages={store.getState().dialogsPage.messagesData}
-//                     dialogs={store.getState().dialogsPage.dialogsData}
-//                     newMessageBody={newMessageBody}
-//                     sendMessage={onClickHandler}
-//                     updateNewMessageBody={onNewMessageHandler}
-//
-//     />)
-// }
-
 type MapStatePropsType = {
     messages: MessagesDataType[]
         dialogs: DialogsDataType[]
