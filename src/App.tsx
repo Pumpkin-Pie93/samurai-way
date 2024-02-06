@@ -10,6 +10,7 @@ import {Settings} from "./components/settings/Settings";
 import {store} from "./redux/redux-store";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import {Users} from "./components/users/Users";
+import {UsersContainer} from "./components/users/Users-container";
 //
 // type AppPropstype = {
 //     store: any
@@ -28,7 +29,7 @@ function App() {
                         <Route path='/dialogs' element={<DialogsContainer />}/>
                         <Route path='/profile' element={<Profile />}/>
                         <Route path='/news' element={<News/>}/>
-                        <Route path='/users' element={<Users/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                     </Routes>

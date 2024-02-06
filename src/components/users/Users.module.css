@@ -1,0 +1,27 @@
+.userContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid greenyellow;
+}
+
+.iconContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #2f59ff;
+}
+.statusContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #333333;
+}
+.locationContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ac0a0a;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import {UserType} from "./State";
 
 const initialUsersState: initialUsersStateType = {
     users: [
@@ -43,17 +44,6 @@ const initialUsersState: initialUsersStateType = {
         }
     ]
 }
-type UserType = {
-    id:number,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: LocationType
-}
-type LocationType = {
-    city:string,
-    country:string
-}
 
 type initialUsersStateType = {
            users: UserType[]
@@ -64,18 +54,20 @@ export const userReducer = (state = initialUsersState, action: UserActionsType) 
         case "FOLLOW-USER":
         {
             return {...state,
-            users:[...state.users, state.users[userId].followed]}
+            users: state.users.map(el=> el.id === action.userId? {...el, followed: true}: el)}
         }
-        case "UNFOLLOW-USER":{
-            return {...state}
+        case "UNFOLLOW-USER":
+        {
+        return {...state,
+            users: state.users.map(el=> el.id === action.userId? {...el, followed: false}: el)}
         }
         default: return state
     }
 }
 // actions
 
-const followUserAC = () => {return {type:'FOLLOW-USER'} as const}
-const unfollowUserAC = () => {return {type:'UNFOLLOW-USER'} as const}
+const followUserAC = (userId: number) => {return {type:'FOLLOW-USER',userId} as const}
+const unfollowUserAC = (userId: number) => {return {type:'UNFOLLOW-USER',userId} as const}
 
 // types
 
