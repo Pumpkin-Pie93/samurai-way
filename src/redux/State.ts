@@ -55,6 +55,7 @@ let store: StoreType = {
             users: [
                 {
                     id: 1,
+                    avatar:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg',
                     fullName: 'Kiryll',
                     followed: false,
                     status: 'I\'m a boss',
@@ -62,6 +63,7 @@ let store: StoreType = {
                 },
                 {
                     id: 2,
+                    avatar:'https://proza.ru/pics/2021/12/10/97.jpg',
                     fullName: 'Veronica',
                     followed: true,
                     status: 'Hello World',
@@ -69,10 +71,22 @@ let store: StoreType = {
                 },
                 {
                     id: 3,
+                    avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg',
                     fullName: 'Victoria',
                     followed: false,
                     status: 'I like cats',
                     location: {city: 'Minsk', country: 'Belarus'}
+                },
+                {
+                    id: 4,
+                    avatar: 'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg',
+                    fullName: 'Tanya',
+                    followed: false,
+                    status: 'Sotial person',
+                    location: {
+                        city: 'Minsk',
+                        country: 'Belarus'
+                    }
                 }
             ]
         }
@@ -184,6 +198,7 @@ export type UsersPageType = {
 }
 export type UserType = {
     id: number,
+    avatar: string,
     followed: boolean,
     fullName: string,
     status: string,

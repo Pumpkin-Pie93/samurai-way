@@ -1,29 +1,40 @@
 import React from 'react';
 import {UsersPropsType} from "./Users-container";
 import s from './Users.module.css'
-export const Users = (props:UsersPropsType) => {
+
+export const Users = (props: UsersPropsType) => {
 
     let users = props.users
 
+    const onclickHandler = (id: number) => {
+
+    }
+
     return (
         <div>
-            {  users.map((user)=>{
-                    return(
-                            <li key={user.id}>
-                                <div className={s.userContainer}>
-                                    <div className={s.iconContainer}>
-                                        <h1>{user.fullName}</h1>
-                                        {user.followed? <button>unfollowed</button> : <button>followed</button>}
-                                    </div>
-                                    <div className={s.statusContainer}>
-                                        <span>{user.status}</span>
-                                    </div>
-                                    <div className={s.locationContainer}><span>{user.location.country}<br/>{user.location.city}</span></div>
+            {users.map((user) => {
+                return (
+                        <div key={user.id} className={s.userContainer}>
+                            <div className={s.iconContainer}>
+                                <div>
+                                    <img src={user.avatar}/>
                                 </div>
-                            </li>
-                        )
-                })
+                                <button
+                                    onClick={() => onclickHandler(user.id)}>{user.followed ? 'unfollowed' : 'followed'}</button>
+                            </div>
+                            <div className={s.Content}>
+                            <div className={s.statusContainer}>
+                                <h2>{user.fullName}</h2>
+                                    <span>{user.location.country},<br/>{user.location.city}</span>
+                            </div>
+                                {/*<div className={s.locationContainer}>*/}
+                                <div className={s.status}>{user.status}</div>
+                                </div>
+                            {/*</div>*/}
+                        </div>
+                )
             })
+            }
             <div>
                 <button>more</button>
             </div>
