@@ -11,7 +11,7 @@ export const Users = (props: UsersPropsType) => {
     }
 
     return (
-        <div>
+        <div className={s.wrapper}>
             {users.map((user) => {
                 return (
                         <div key={user.id} className={s.userContainer}>
@@ -35,8 +35,8 @@ export const Users = (props: UsersPropsType) => {
                 )
             })
             }
-            <div>
-                <button>more</button>
+            <div className={s.button}>
+                <button>Show more</button>
             </div>
         </div>
     );
