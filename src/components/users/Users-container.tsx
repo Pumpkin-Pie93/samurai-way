@@ -27,9 +27,11 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType => {
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         follow: (userId) => {
+            console.log('follow' + userId)
             dispatch(followUserAC(userId))
         },
         unfollow:(userId) => {
+            console.log('unfollow' + userId)
             dispatch(unfollowUserAC(userId))
         },
         setUsers:(users) =>{

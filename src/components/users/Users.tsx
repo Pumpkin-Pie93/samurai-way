@@ -6,9 +6,7 @@ export const Users = (props: UsersPropsType) => {
 
     let users = props.users
 
-    const onclickHandler = (id: number) => {
 
-    }
 
     return (
         <div className={s.wrapper}>
@@ -19,8 +17,9 @@ export const Users = (props: UsersPropsType) => {
                                 <div>
                                     <img src={user.avatar}/>
                                 </div>
-                                <button
-                                    onClick={() => onclickHandler(user.id)}>{user.followed ? 'unfollowed' : 'followed'}</button>
+                                {user.followed
+                                    ? <button onClick={()=>props.unfollow(user.id)}>Unfollow</button>
+                                    :<button onClick={()=>props.follow(user.id)}>Follow</button>}
                             </div>
                             <div className={s.Content}>
                             <div className={s.statusContainer}>
