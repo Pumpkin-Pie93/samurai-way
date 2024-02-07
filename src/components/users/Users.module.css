@@ -29,8 +29,16 @@
         height: 100px;
         border-radius: 50px;
         object-fit: cover;
-        ;
-
+    }
+    & div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        background-color: #b1ad04;
+        margin: 5px;
     }
 }
 .Content{

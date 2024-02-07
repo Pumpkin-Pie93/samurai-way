@@ -2,17 +2,17 @@ import React from 'react';
 import {UsersPropsType} from "./Users-container";
 import s from './Users.module.css'
 import axios from "axios";
+import userPhoto from '../../assets/images/ava.jpg'
 
 export const Users = (props: UsersPropsType) => {
-
-if(props.users.length === 0){
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then((res:any)=>{
-            debugger
-            props.setUsers(res.data.items)
-        })
+let getUsers = ()=> {
+    if(props.users.length === 0){
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then((res:any)=>{
+                props.setUsers(res.data.items)
+            })
+    }
 }
-
     let users = props.users
 
     return (
@@ -22,7 +22,7 @@ if(props.users.length === 0){
                         <div key={user.id} className={s.userContainer}>
                             <div className={s.iconContainer}>
                                 <div>
-                                    {user.photos.large?<img src={user.photos.large}/>:<div>photo</div>}
+                                    {user.photos.small?<img src={user.photos.small}/>:<img src={userPhoto}></img>}
                                 </div>
                                 {user.followed
                                     ? <button onClick={()=>props.unfollow(user.id)}>Unfollow</button>
