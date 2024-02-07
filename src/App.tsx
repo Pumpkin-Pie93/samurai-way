@@ -3,7 +3,7 @@ import './App.css';
 import {Header} from "./components/header/Header";
 import {Navbar} from "./components/nav/Navbar";
 import {Profile} from "./components/profile/Profile";
-import {Route, Routes} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {Music} from "./components/music/Music";
 import {News} from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
@@ -21,20 +21,26 @@ import {UsersContainer} from "./components/users/Users-container";
 
 function App() {
     return (
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar friends={store.getState().sidebar.friends}/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/dialogs' element={<DialogsContainer />}/>
-                        <Route path='/profile' element={<Profile />}/>
-                        <Route path='/news' element={<News/>}/>
-                        <Route path='/users' element={<UsersContainer/>}/>
-                        <Route path='/music' element={<Music/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
-                    </Routes>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar friends={store.getState().sidebar.friends}/>
+            <div className='app-wrapper-content'>
+                {/*<Routes>*/}
+                {/*    <Route path='/dialogs' element={<DialogsContainer />}/>*/}
+                {/*    <Route path='/profile' element={<Profile />}/>*/}
+                {/*    <Route path='/news' element={<News/>}/>*/}
+                {/*    <Route path='/users' element={<UsersContainer/>}/>*/}
+                {/*    <Route path='/music' element={<Music/>}/>*/}
+                {/*    <Route path='/settings' element={<Settings/>}/>*/}
+                {/*</Routes>*/}
+                <Route path='/dialogs' component={DialogsContainer}/>
+                <Route path='/profile' component={Profile}/>
+                <Route path='/news' component={News}/>
+                <Route path='/users' component={UsersContainer}/>
+                <Route path='/music' component={Music}/>
+                <Route path='/settings' component={Settings}/>
             </div>
+        </div>
     );
 }
 

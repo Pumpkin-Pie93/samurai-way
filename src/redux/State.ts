@@ -55,32 +55,36 @@ let store: StoreType = {
             users: [
                 {
                     id: 1,
-                    avatar:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg',
-                    fullName: 'Kiryll',
+                    photos:{small:null,
+                    large:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
+                    name: 'Kiryll',
                     followed: false,
                     status: 'I\'m a boss',
                     location: {city: 'Minsk', country: 'Belarus'}
                 },
                 {
                     id: 2,
-                    avatar:'https://proza.ru/pics/2021/12/10/97.jpg',
-                    fullName: 'Veronica',
+                    photos:{small:null,
+                    large:'https://proza.ru/pics/2021/12/10/97.jpg'},
+                    name: 'Veronica',
                     followed: true,
                     status: 'Hello World',
                     location: {city: 'Minsk', country: 'Belarus'}
                 },
                 {
                     id: 3,
-                    avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg',
-                    fullName: 'Victoria',
+                    photos:{small:null,
+                    large:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+                    name: 'Victoria',
                     followed: false,
                     status: 'I like cats',
                     location: {city: 'Minsk', country: 'Belarus'}
                 },
                 {
                     id: 4,
-                    avatar: 'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg',
-                    fullName: 'Tanya',
+                    photos: {small:null,
+                    large:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
+                    name: 'Tanya',
                     followed: false,
                     status: 'Sotial person',
                     location: {
@@ -197,10 +201,13 @@ export type UsersPageType = {
     users: UserType[]
 }
 export type UserType = {
+    name: string,
     id: number,
-    avatar: string,
+    photos: {
+        small:string | null,
+        large:string | null
+    },
     followed: boolean,
-    fullName: string,
     status: string,
     location: LocationType
 }
