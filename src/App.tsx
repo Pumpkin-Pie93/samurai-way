@@ -25,15 +25,7 @@ function App() {
             <Header/>
             <Navbar friends={store.getState().sidebar.friends}/>
             <div className='app-wrapper-content'>
-                {/*<Routes>*/}
-                {/*    <Route path='/dialogs' element={<DialogsContainer />}/>*/}
-                {/*    <Route path='/profile' element={<Profile />}/>*/}
-                {/*    <Route path='/news' element={<News/>}/>*/}
-                {/*    <Route path='/users' element={<UsersContainer/>}/>*/}
-                {/*    <Route path='/music' element={<Music/>}/>*/}
-                {/*    <Route path='/settings' element={<Settings/>}/>*/}
-                {/*</Routes>*/}
-                <Route path='/dialogs' component={DialogsContainer}/>
+                              <Route path='/dialogs' component={DialogsContainer}/>
                 <Route path='/profile' component={Profile}/>
                 <Route path='/news' component={News}/>
                 <Route path='/users' component={UsersContainer}/>
