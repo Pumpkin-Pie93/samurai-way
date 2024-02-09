@@ -99,3 +99,7 @@
 .selectedPage:hover{
      cursor: pointer;
  }
+.loader{
+    position: relative;
+    transform: translate(165%, 50%);
+}
