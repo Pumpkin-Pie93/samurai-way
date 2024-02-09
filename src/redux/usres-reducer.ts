@@ -4,8 +4,8 @@ import {UserType} from "./State";
 const initialUsersState: initialUsersStateType = {
     users: [],
     pageSize: 4,
-    totalUsersCount: 13,
-    currentPage:167
+    totalUsersCount: 0,
+    currentPage:1
 }
 
 type initialUsersStateType = {
@@ -30,10 +30,13 @@ export const userReducer = (state = initialUsersState, action: UserActionsType) 
             }
         }
         case "SET-USERS": {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...action.users]}
         }
         case "SET-CURRENT-PAGE":{
             return {...state,currentPage:action.currentPage}
+        }
+        case "SET-TOTAL-COUNT":{
+            return {...state, totalUsersCount: action.totalCount}
         }
         default:
             return state
@@ -55,6 +58,9 @@ export const setUsersAC = (users: UserType[]) => {
 export const setCurrentPageAC = (currentPage:number) => {
     return {type: 'SET-CURRENT-PAGE', currentPage} as const
 }
+export const setTotalCountAC = (totalCount:number) => {
+    return {type: 'SET-TOTAL-COUNT', totalCount} as const
+}
 
 
 // types
@@ -62,7 +68,9 @@ export const setCurrentPageAC = (currentPage:number) => {
 type UserActionsType = ReturnType<typeof followUserAC>
     | ReturnType<typeof unfollowUserAC>
     | SetUsersType
-    |SetCurrentPageType
+    | SetCurrentPageType
+    | SetTotalCountType
 
 export type SetUsersType = ReturnType<typeof setUsersAC>
 export type SetCurrentPageType = ReturnType<typeof setCurrentPageAC>
+export type SetTotalCountType = ReturnType<typeof setTotalCountAC>

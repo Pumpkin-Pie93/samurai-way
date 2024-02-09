@@ -85,7 +85,14 @@
     align-items: center;
     /*border: 2px solid #ac0a0a;*/
 }
-
+.pages{
+    cursor: pointer;
+}
 .selectedPage{
     font-weight: bolder;
+    cursor: pointer;
+
 }
+.selectedPage:hover{
+     cursor: pointer;
+ }

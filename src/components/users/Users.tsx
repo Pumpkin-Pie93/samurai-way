@@ -9,7 +9,16 @@ export class Users extends React.Component<UsersPropsType> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
         .then((res: any) => {
             this.props.setUsers(res.data.items)
+            this.props.setTotalCount(res.data.totalCount)
+
         })
+    }
+    onPageChanged =(pageNumber: number)=> {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then((res: any) => {
+                this.props.setUsers(res.data.items)
+            })
     }
     render() {
 
@@ -23,8 +32,8 @@ export class Users extends React.Component<UsersPropsType> {
             <>
                 {pages.map((p)=>{
                     return <span
-                        className={this.props.currentPage === p ? s.selectedPage:''}
-                        onClick={()=>this.props.setCurrentPage(p)}
+                        className={this.props.currentPage === p ? s.selectedPage:s.pages}
+                        onClick={(e)=>this.onPageChanged(p)}
                     >{p + ' '}
                     </span>})
                 }
