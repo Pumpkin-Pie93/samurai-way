@@ -9,15 +9,7 @@ import {News} from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
 import {store} from "./redux/redux-store";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
-import {Users} from "./components/users/Users";
-import {UsersContainer} from "./components/users/Users-container";
-//
-// type AppPropstype = {
-//     store: any
-//     state: StateType
-//     dispatch: (action: any) => void
-//
-// }
+import UsersContainer from "./components/users/Users-container";
 
 function App() {
     return (
@@ -35,5 +27,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

@@ -1,10 +1,13 @@
 import {UserType} from "../../redux/State";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Users} from "./Users";
 import {Dispatch} from "redux";
 import {followUserAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unfollowUserAC} from "../../redux/usres-reducer";
+import React from "react";
+import axios from "axios";
+import {Users} from "./Users";
 
+//types
 type MapStatePropsType = {
     users: UserType[]
     pageSize: number
@@ -21,9 +24,9 @@ type MapDispatchPropsType = {
     setTotalCount: (totalCount: number) => void
 
 }
-
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
+//props
 let mapStateToProps = (state: AppStateType):MapStatePropsType => {
     return {
         users: state.usersPage.users,
@@ -32,7 +35,6 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType => {
         currentPage:state.usersPage.currentPage
     }
 }
-
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         follow: (userId) => {
@@ -55,5 +57,36 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     }
 }
 
-// export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
-export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(Users)
+//class
+class UsersContainer extends React.Component<UsersPropsType> {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((res: any) => {
+                this.props.setUsers(res.data.items)
+                this.props.setTotalCount(res.data.totalCount)
+
+            })
+    }
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then((res: any) => {
+                this.props.setUsers(res.data.items)
+            })
+    }
+
+    render() {
+        return <Users
+            users={this.props.users}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount}
+            currentPage={this.props.currentPage}
+            onPageChanged={this.onPageChanged}
+            unfollow={this.props.unfollow}
+            follow={this.props.follow}
+        />
+    };
+}
+
+//component
+export default connect(mapStateToProps,mapDispatchToProps)(UsersContainer)

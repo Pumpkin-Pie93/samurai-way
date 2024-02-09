@@ -87,11 +87,14 @@
 }
 .pages{
     cursor: pointer;
+    margin: 2px;
+    color: #ba9b6f;
 }
 .selectedPage{
     font-weight: bolder;
     cursor: pointer;
-
+    margin: 2px;
+    color: #79664b;
 }
 .selectedPage:hover{
      cursor: pointer;
