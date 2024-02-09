@@ -85,3 +85,7 @@
     align-items: center;
     /*border: 2px solid #ac0a0a;*/
 }
+
+.selectedPage{
+    font-weight: bolder;
+}

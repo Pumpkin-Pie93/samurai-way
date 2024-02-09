@@ -53,45 +53,45 @@ let store: StoreType = {
         },
         usersPage: {
             users: [
-                {
-                    id: 1,
-                    photos:{small:null,
-                    large:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
-                    name: 'Kiryll',
-                    followed: false,
-                    status: 'I\'m a boss',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 2,
-                    photos:{small:null,
-                    large:'https://proza.ru/pics/2021/12/10/97.jpg'},
-                    name: 'Veronica',
-                    followed: true,
-                    status: 'Hello World',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 3,
-                    photos:{small:null,
-                    large:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-                    name: 'Victoria',
-                    followed: false,
-                    status: 'I like cats',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 4,
-                    photos: {small:null,
-                    large:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
-                    name: 'Tanya',
-                    followed: false,
-                    status: 'Sotial person',
-                    location: {
-                        city: 'Minsk',
-                        country: 'Belarus'
-                    }
-                }
+            //     {
+            //         id: 1,
+            //         photos:{small:null,
+            //         large:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
+            //         name: 'Kiryll',
+            //         followed: false,
+            //         status: 'I\'m a boss',
+            //         location: {city: 'Minsk', country: 'Belarus'}
+            //     },
+            //     {
+            //         id: 2,
+            //         photos:{small:null,
+            //         large:'https://proza.ru/pics/2021/12/10/97.jpg'},
+            //         name: 'Veronica',
+            //         followed: true,
+            //         status: 'Hello World',
+            //         location: {city: 'Minsk', country: 'Belarus'}
+            //     },
+            //     {
+            //         id: 3,
+            //         photos:{small:null,
+            //         large:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
+            //         name: 'Victoria',
+            //         followed: false,
+            //         status: 'I like cats',
+            //         location: {city: 'Minsk', country: 'Belarus'}
+            //     },
+            //     {
+            //         id: 4,
+            //         photos: {small:null,
+            //         large:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
+            //         name: 'Tanya',
+            //         followed: false,
+            //         status: 'Sotial person',
+            //         location: {
+            //             city: 'Minsk',
+            //             country: 'Belarus'
+            //         }
+            //     }
             ]
         }
     },
@@ -104,7 +104,6 @@ let store: StoreType = {
         subscribe(observer) {
             this._callSubscriber = observer
         },
-
         addPost() {
             let newPost = {
                 id: this._state.postsPage.postsData.length,
@@ -119,7 +118,6 @@ let store: StoreType = {
             this._callSubscriber()
 
         },
-
         dispatch(action) {
             this._state.postsPage = profileReducer(this._state.postsPage, action)
             this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
@@ -128,6 +126,7 @@ let store: StoreType = {
         }
     }
 
+//actions
 
 export const AddNewPostAC = () => {
     return {
@@ -149,7 +148,8 @@ export const UpdateNewMessageBodyAC = (body: string) => {
         type: 'UPDATE_NEW_MESSAGE_BODY', body
     } as const
 }
-// window.store = store
+
+//types
 
 export type StoreType = {
     _state: StateType
@@ -217,57 +217,3 @@ export type LocationType = {
 }
 
 export default store
-
-// let rerenderEntireTree = () => {
-//     console.log('state changed')
-// }
-
-// export const state = {
-//
-//     postsPage: {
-//         postsData: [
-//             {id: 1, message: 'Hi,it\'s my first post', likes: 33},
-//             {id: 2, message: 'How are you?', likes: 17}
-//         ],
-//         newPostText: 'it-kamasutra'
-//     },
-//     dialogsPage: {
-//         messagesData: [
-//             {id: 1, message: 'What\'s up?'},
-//             {id: 2, message: 'Do you go to the party tonight?'},
-//             {id: 3, message: 'I\'ve bot something special!'},
-//             {id: 4, message: 'Polinaaaa!, Go to Hooka'},
-//             {id: 5, message: 'That is quite'}
-//         ],
-//         dialogsData: [
-//             {id: 1, name: 'Kiryll', avatar: 'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
-//             {id: 2, name: 'Veronica',avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
-//             {id: 3, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-//             {id: 4, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
-//             {id: 5, name: 'Alya',avatar:'https://miro.medium.com/v2/resize:fit:1192/1*xPM9rgDuQH1w056QP7Ttgw.jpeg'}
-//         ]
-//     },
-//     sidebar: {
-//         friends : [
-//             {id: 1, name: 'Veronica', avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
-//             {id: 2, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-//             {id: 3, name: 'Tanya',avatar:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'}
-//         ]
-//     }
-// }
-
-// export const addPost = () => {
-//     let newPost = {id: state.postsPage.postsData.length, message: state.postsPage.newPostText, likes: 0}
-//     state.postsPage.postsData.push(newPost)
-//     rerenderEntireTree()
-// }
-
-// export const updateNewPostText = (newText: any) => {
-//     state.postsPage.newPostText = newText
-//     rerenderEntireTree()
-//
-// }
-
-// export const subscribe = (observer: any) => {
-//     rerenderEntireTree = observer
-// }
