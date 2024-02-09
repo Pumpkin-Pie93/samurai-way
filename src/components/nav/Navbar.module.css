@@ -1,21 +1,15 @@
-
 .nav {
     grid-area: n;
-    background-color: beige;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-}
-
-/*.item{*/
-/*    color: darkolivegreen;*/
-/*    margin-left: 10px;*/
-/*}*/
-
-.item a {
-    color: #688536;
+    background-color: #dbead3;
+    padding: 10px 0 10px 10px ;
 }
 
 .item a.active {
-    color: #b1ad04;
+    color: rgb(121 133 109);
+    text-decoration: underline;
+    font-weight: bolder;
+}
+.item a {
+    color: #718255;
+    text-decoration: none;
 }
