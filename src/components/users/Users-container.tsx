@@ -1,14 +1,13 @@
 import {UserType} from "../../redux/State";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {
-    followUserAC,
-    setCurrentPageAC,
-    setToggleIsFetchingAC,
-    setTotalCountAC,
-    setUsersAC,
-    unfollowUserAC
+    followUser,
+    setCurrentPage,
+    setToggleIsFetching,
+    setTotalCount,
+    setUsers,
+    unfollowUser
 } from "../../redux/usres-reducer";
 import React from "react";
 import axios from "axios";
@@ -44,30 +43,17 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (userId) => {
-            console.log('follow' + userId)
-            dispatch(followUserAC(userId))
-        },
-        unfollow: (userId) => {
-            console.log('unfollow' + userId)
-            dispatch(unfollowUserAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        setToggleIsFetching: (isFetching)=> {
-            dispatch(setToggleIsFetchingAC(isFetching))
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+//     return {
+//         follow: followUserAC,
+//         unfollow: unfollowUserAC,
+//         setUsers: setUsersAC,
+//         setCurrentPage:setCurrentPageAC,
+//         setTotalCount:setTotalCountAC,
+//         setToggleIsFetching:setToggleIsFetchingAC,
+//
+//     }
+// }
 
 //class
 class UsersContainer extends React.Component<UsersPropsType> {
@@ -80,7 +66,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
                 this.props.setTotalCount(res.data.totalCount)
             })
     }
-
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.setToggleIsFetching(true)
@@ -90,7 +75,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
                 this.props.setToggleIsFetching(false)
             })
     }
-
     render() {
         return <>
             {this.props.isFetching
@@ -110,4 +94,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
 }
 
 //component
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    followUser,
+    unfollowUser,
+    setUsers,
+    setCurrentPage,
+    setTotalCount,
+    setToggleIsFetching,
+
+})(UsersContainer)
