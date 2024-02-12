@@ -1,4 +1,4 @@
-import {AddNewPostAC, PostItemType, UpdateNewPostTextAC} from "../../../redux/State";
+import {AddNewPostAC, PostItemType, UpdateNewPostTextAC} from "../../../redux/Store";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";

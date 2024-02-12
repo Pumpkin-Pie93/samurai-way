@@ -10,14 +10,15 @@ import {Settings} from "./components/settings/Settings";
 import {store} from "./redux/redux-store";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/Users-container";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 function App() {
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <Navbar friends={store.getState().sidebar.friends}/>
             <div className='app-wrapper-content'>
-                <Route path='/profile/:userId' component={ProfileContainer}/>
+                <Route path='/profile/:userId?' component={ProfileContainer}/>
                 <Route path='/dialogs' component={DialogsContainer}/>
                 <Route path='/news' component={News}/>
                 <Route path='/users' component={UsersContainer}/>

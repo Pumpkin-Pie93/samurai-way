@@ -1,4 +1,4 @@
-import {DialogsPageType} from "./State";
+import {DialogsPageType} from "./Store";
 
 type SendMessageAT = {
     type: 'SEND-MESSAGE'

@@ -6,7 +6,7 @@
 }
 
 .profilePhoto {
-    margin: 10px;
+    margin: 10px 0 0 0;
     border: 1px solid gray;
     padding: 3px;
     display: flex;

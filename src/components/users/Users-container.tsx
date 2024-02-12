@@ -1,4 +1,4 @@
-import {UserType} from "../../redux/State";
+import {UserType} from "../../redux/Store";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {

@@ -1,4 +1,4 @@
-import {PostsPageType, UserProfileResponseType, UserProfileType} from "./State";
+import {PostsPageType, UserProfileResponseType, UserProfileType} from "./Store";
 
 const initialState = {
     postsData: [

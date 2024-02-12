@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./post/Post";
-import {PostItemType} from "../../../redux/State";
+import {PostItemType} from "../../../redux/Store";
 import {MyPostsPropsType} from "./MyPostsContainer";
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {UserType} from "./State";
+import {UserType} from "./Store";
 
 const initialUsersState: initialUsersStateType = {
     users: [],

@@ -1,4 +1,4 @@
-import {DialogsDataType, MessagesDataType, SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/State";
+import {DialogsDataType, MessagesDataType, SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/Store";
 import {Dialogs} from "./Dialogs";
 // import {connect} from "react-redux";
 import {connect} from "react-redux";

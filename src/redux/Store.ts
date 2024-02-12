@@ -34,7 +34,7 @@ let store: StoreType = {
                 "lookingForAJob": false,
                 "lookingForAJobDescription": null,
                 "fullName": null,
-                "userId": 2,
+                "userId": null,
                 "photos": {
                     "small":  null,
                     "large":  null
@@ -83,6 +83,9 @@ let store: StoreType = {
         },
         usersPage: {
             users: []
+        },
+        auth: {
+
         }
     },
         _callSubscriber() {
@@ -155,6 +158,7 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SideBarType
     usersPage: UsersPageType
+    auth: AuthDataType | {}
 }
 export type PostsPageType = {
     postsData: PostItemType[]
@@ -182,7 +186,6 @@ export type DialogsPageType = {
     dialogsData: DialogsDataType[]
     newMessageBody: string
 }
-
 export type SideBarType = {
     friends: FriendsItemsType[]
 }
@@ -220,7 +223,6 @@ export type UserProfileType = {
     status: null | string
     followed?: boolean
 }
-
 export type UserProfileResponseType = {
     "aboutMe": string | null,
     "contacts": {
@@ -236,11 +238,16 @@ export type UserProfileResponseType = {
     "lookingForAJob": boolean,
     "lookingForAJobDescription": string | null,
     "fullName": string | null,
-    "userId": number,
+    "userId": number | null,
     "photos": {
         "small": string | null,
         "large": string | null
     }
+}
+export type AuthDataType = {
+    id: number| null ,
+    email: null | string,
+    login: null | string
 }
 
 // window.store = store
