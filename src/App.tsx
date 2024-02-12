@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./components/header/Header";
 import {Navbar} from "./components/nav/Navbar";
-import {Profile} from "./components/profile/Profile";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import {Route} from "react-router-dom";
 import {Music} from "./components/music/Music";
 import {News} from "./components/news/News";
@@ -18,7 +18,7 @@ function App() {
             <Navbar friends={store.getState().sidebar.friends}/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs' component={DialogsContainer}/>
-                <Route path='/profile' component={Profile}/>
+                <Route path='/profile' component={ProfileContainer}/>
                 <Route path='/news' component={News}/>
                 <Route path='/users' component={UsersContainer}/>
                 <Route path='/music' component={Music}/>

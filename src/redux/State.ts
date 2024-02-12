@@ -3,13 +3,22 @@ import {AllAT, dialogReducer} from "./Dialog-reducer";
 
 let store: StoreType = {
     _state: {
-
         postsPage: {
             postsData: [
                 {id: 1, message: 'Hi,it\'s my first post', likes: 33},
                 {id: 2, message: 'How are you?', likes: 17}
             ],
-            newPostText: 'it-kamasutra'
+            newPostText: 'it-kamasutra',
+            profile: {
+                name: 'Polina',
+                id: 30296,
+                uniqueUrlName: null,
+                photos: {
+                    small: null ,
+                    large: 'https://ir.ozone.ru/s3/multimedia-9/c1000/6537874785.jpg',
+                },
+                status: 'Moon Eternal Make Up!'
+            }
         },
         dialogsPage: {
             messagesData: [
@@ -52,47 +61,7 @@ let store: StoreType = {
             ]
         },
         usersPage: {
-            users: [
-            //     {
-            //         id: 1,
-            //         photos:{small:null,
-            //         large:'https://www.theartnewspaper.ru/media/images/32e98de8-5781-49e6-b73d-57ccea2ac8.2e16d0ba.fill-465x285.jpg'},
-            //         name: 'Kiryll',
-            //         followed: false,
-            //         status: 'I\'m a boss',
-            //         location: {city: 'Minsk', country: 'Belarus'}
-            //     },
-            //     {
-            //         id: 2,
-            //         photos:{small:null,
-            //         large:'https://proza.ru/pics/2021/12/10/97.jpg'},
-            //         name: 'Veronica',
-            //         followed: true,
-            //         status: 'Hello World',
-            //         location: {city: 'Minsk', country: 'Belarus'}
-            //     },
-            //     {
-            //         id: 3,
-            //         photos:{small:null,
-            //         large:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
-            //         name: 'Victoria',
-            //         followed: false,
-            //         status: 'I like cats',
-            //         location: {city: 'Minsk', country: 'Belarus'}
-            //     },
-            //     {
-            //         id: 4,
-            //         photos: {small:null,
-            //         large:'https://art-dot.ru/wp-content/uploads/2021/03/leonardo-da-vinchi-prekrasnaya-ferronera.jpg'},
-            //         name: 'Tanya',
-            //         followed: false,
-            //         status: 'Sotial person',
-            //         location: {
-            //             city: 'Minsk',
-            //             country: 'Belarus'
-            //         }
-            //     }
-            ]
+            users: []
         }
     },
         _callSubscriber() {
@@ -160,9 +129,16 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: any) => void
 }
+export type StateType = {
+    postsPage: PostsPageType
+    dialogsPage: DialogsPageType
+    sidebar: SideBarType
+    usersPage: UsersPageType
+}
 export type PostsPageType = {
     postsData: PostItemType[]
     newPostText: string
+    profile: UserProfileType
 }
 export type PostItemType = {
     id: number,
@@ -183,12 +159,7 @@ export type DialogsPageType = {
     dialogsData: DialogsDataType[]
     newMessageBody: string
 }
-export type StateType = {
-    postsPage: PostsPageType
-    dialogsPage: DialogsPageType
-    sidebar: SideBarType
-    usersPage: UsersPageType
-}
+
 export type SideBarType = {
     friends: FriendsItemsType[]
 }
@@ -215,5 +186,18 @@ export type LocationType = {
     city: string,
     country: string
 }
+export type UserProfileType = {
+    name: string
+    id: number
+    uniqueUrlName: null | string
+    photos: {
+        small: null | string
+        large: null | string
+    },
+    status: null | string
+    followed?: boolean
+}
+
+// window.store = store
 
 export default store

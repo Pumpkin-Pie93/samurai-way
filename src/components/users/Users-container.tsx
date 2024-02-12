@@ -43,17 +43,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-//     return {
-//         follow: followUserAC,
-//         unfollow: unfollowUserAC,
-//         setUsers: setUsersAC,
-//         setCurrentPage:setCurrentPageAC,
-//         setTotalCount:setTotalCountAC,
-//         setToggleIsFetching:setToggleIsFetchingAC,
-//
-//     }
-// }
 
 //class
 class UsersContainer extends React.Component<UsersPropsType> {
