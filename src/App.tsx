@@ -17,8 +17,8 @@ function App() {
             <Header/>
             <Navbar friends={store.getState().sidebar.friends}/>
             <div className='app-wrapper-content'>
+                <Route path='/profile/:userId' component={ProfileContainer}/>
                 <Route path='/dialogs' component={DialogsContainer}/>
-                <Route path='/profile' component={ProfileContainer}/>
                 <Route path='/news' component={News}/>
                 <Route path='/users' component={UsersContainer}/>
                 <Route path='/music' component={Music}/>

@@ -1,4 +1,4 @@
-import {PostsPageType, UserProfileType} from "./State";
+import {PostsPageType, UserProfileResponseType, UserProfileType} from "./State";
 
 const initialState = {
     postsData: [
@@ -6,7 +6,7 @@ const initialState = {
         {id: 2, message: 'How are you?', likes: 17}
     ],
     newPostText: 'it-kamasutra',
-    profile: {
+    myProfile: {
         name: 'Polina',
         id: 30296,
         uniqueUrlName: null,
@@ -15,6 +15,27 @@ const initialState = {
             large: null,
         },
         status: 'Moon Eternal Make Up!'
+    },
+    profile: {
+        "aboutMe": null,
+        "contacts": {
+            "facebook": null,
+            "website": null,
+            "vk": null,
+            "twitter": null,
+            "instagram": null,
+            "youtube": null,
+            "github": null,
+            "mainLink": null
+        },
+        "lookingForAJob": false,
+        "lookingForAJobDescription": null,
+        "fullName": null,
+        "userId": 2,
+        "photos": {
+            "small":  null,
+            "large":  null
+        }
     }
 }
 
@@ -57,6 +78,6 @@ export const UpdateNewPostTextAC = (newText: string) => {
     } as const
 }
 
-export const setUserProfile = (profile:UserProfileType) => {
+export const setUserProfile = (profile:UserProfileResponseType) => {
     return {type:'SET-USER-PROFILE',profile}as const
 }

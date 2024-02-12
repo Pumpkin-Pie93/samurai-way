@@ -9,15 +9,36 @@ let store: StoreType = {
                 {id: 2, message: 'How are you?', likes: 17}
             ],
             newPostText: 'it-kamasutra',
-            profile: {
+            myProfile: {
                 name: 'Polina',
                 id: 30296,
                 uniqueUrlName: null,
                 photos: {
-                    small: null ,
+                    small: 'https://ir.ozone.ru/s3/multimedia-9/c1000/6537874785.jpg' ,
                     large: 'https://ir.ozone.ru/s3/multimedia-9/c1000/6537874785.jpg',
                 },
                 status: 'Moon Eternal Make Up!'
+            },
+            profile: {
+                "aboutMe": null,
+                "contacts": {
+                    "facebook": null,
+                    "website": null,
+                    "vk": null,
+                    "twitter": null,
+                    "instagram": null,
+                    "youtube": null,
+                    "github": null,
+                    "mainLink": null
+                },
+                "lookingForAJob": false,
+                "lookingForAJobDescription": null,
+                "fullName": null,
+                "userId": 2,
+                "photos": {
+                    "small":  null,
+                    "large":  null
+                }
             }
         },
         dialogsPage: {
@@ -138,7 +159,9 @@ export type StateType = {
 export type PostsPageType = {
     postsData: PostItemType[]
     newPostText: string
-    profile: UserProfileType
+    myProfile: UserProfileType
+    profile: UserProfileResponseType
+
 }
 export type PostItemType = {
     id: number,
@@ -196,6 +219,28 @@ export type UserProfileType = {
     },
     status: null | string
     followed?: boolean
+}
+
+export type UserProfileResponseType = {
+    "aboutMe": string | null,
+    "contacts": {
+        "facebook": string | null,
+        "website": string | null,
+        "vk": string | null,
+        "twitter": string | null,
+        "instagram": string | null,
+        "youtube": null,
+        "github": string | null,
+        "mainLink": string | null
+    },
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string | null,
+    "fullName": string | null,
+    "userId": number,
+    "photos": {
+        "small": string | null,
+        "large": string | null
+    }
 }
 
 // window.store = store

@@ -5,11 +5,22 @@
     object-position: 0 -160px;
 }
 
-.description {
+.profilePhoto {
     margin: 10px;
+    border: 1px solid gray;
+    padding: 3px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
-.description img {
+.profilePhoto img {
     width: 100px;
     height: 100px;
     border-radius: 50px;
+    object-fit: cover;
+
+}
+
+.description {
+    margin-left: 10px;
 }
