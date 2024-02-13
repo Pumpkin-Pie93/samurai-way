@@ -1,5 +1,5 @@
-import {AllActionsTypes, profileReducer} from "./Profile-reducer";
-import {AllAT, dialogReducer} from "./Dialog-reducer";
+import {profileReducer} from "./Profile-reducer";
+import {dialogReducer} from "./Dialog-reducer";
 
 let store: StoreType = {
     _state: {
@@ -8,7 +8,7 @@ let store: StoreType = {
                 {id: 1, message: 'Hi,it\'s my first post', likes: 33},
                 {id: 2, message: 'How are you?', likes: 17}
             ],
-            newPostText: 'it-kamasutra',
+            newPostText: '',
             myProfile: {
                 name: 'Polina',
                 id: 30296,

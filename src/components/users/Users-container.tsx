@@ -24,8 +24,8 @@ type MapStatePropsType = {
     isFetching: boolean
 }
 type MapDispatchPropsType = {
-    follow: (userId: number) => void,
-    unfollow: (userId: number) => void,
+    followUser: (userId: number) => void,
+    unfollowUser: (userId: number) => void,
     setUsers: (users: UserType[]) => void,
     setCurrentPage: (currentPage: number) => void,
     setTotalCount: (totalCount: number) => void
@@ -74,8 +74,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
                     onPageChanged={this.onPageChanged}
-                    unfollow={this.props.unfollow}
-                    follow={this.props.follow}
+                    unfollow={this.props.unfollowUser}
+                    follow={this.props.followUser}
                 />
             }
         </>

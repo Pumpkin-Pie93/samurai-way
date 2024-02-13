@@ -16,7 +16,6 @@ let rootReducer = combineReducers({
 export type rootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<rootReducerType>
 
+export const store = legacy_createStore(rootReducer)
 
-export let store = legacy_createStore(rootReducer)
-
-// window.store = store
+// console.log(store.getState())

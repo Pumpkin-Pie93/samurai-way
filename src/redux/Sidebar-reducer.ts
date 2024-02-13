@@ -1,6 +1,5 @@
-import actions from "redux-form/lib/actions";
 
-const initianState = {
+const initialState = {
     friends : [
         {id: 1, name: 'Veronica', avatar:'https://proza.ru/pics/2021/12/10/97.jpg'},
         {id: 2, name: 'Vika',avatar:'https://arthive.net/res/media/img/oy1200/work/864/378925@2x.jpg'},
@@ -11,10 +10,10 @@ const initianState = {
 type ActionType = {
     type: 'XXX'
 }
-export const sidebarReducer = (state:any = initianState, action: ActionType) => {
+export const sidebarReducer = (state:any = initialState, action: ActionType) => {
     switch (action.type){
         case 'XXX':
-            return state
+            return {...state}
         default: return state
     }
 
