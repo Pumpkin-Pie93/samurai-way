@@ -10,7 +10,6 @@ import {
     unfollowUser
 } from "../../redux/usres-reducer";
 import React from "react";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import {usersApi} from "../../api/api";

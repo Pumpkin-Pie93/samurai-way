@@ -12,3 +12,24 @@ export const usersApi = {
    }
 }
 
+export const followApi = {
+   follow(userId:number){
+    return instance.post(`follow/${userId}`, {})
+   },
+   unfollow(userId:number){
+      return instance.delete(`follow/${userId}`)
+   }
+
+}
+
+export const authApi = {
+   authMe(){
+     return instance.get(`auth/me` )
+   }
+ }
+
+export const profileApi = {
+getProfile(userId: number){
+    return  instance.get(`profile/${userId}`)
+}
+}

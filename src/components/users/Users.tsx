@@ -4,6 +4,7 @@ import userPhoto from '../../assets/images/ava.jpg'
 import {UserType} from "../../redux/Store";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {followApi} from "../../api/api";
 
 //types
 type UsersPropsType = {
@@ -51,8 +52,7 @@ export const Users = (props: UsersPropsType) => {
                                 </div>
                                 {user.followed
                                     ? <button onClick={() =>
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                            {withCredentials: true})
+                                      followApi.unfollow(user.id)
                                             .then((res: any) => {
                                                 if (res.data.resultCode === 0) {
                                                     props.unfollow(user.id)
@@ -61,7 +61,7 @@ export const Users = (props: UsersPropsType) => {
 
                                     }>Unfollow</button>
                                     : <button onClick={() =>
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {withCredentials: true})
+                                        followApi.follow(user.id)
                                             .then((res: any) => {
                                                 if (res.data.resultCode === 0) {
                                                     props.follow(user.id)
