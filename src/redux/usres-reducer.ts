@@ -1,5 +1,7 @@
 import React from 'react'
 import {UserType} from "./Store";
+import {Dispatch} from "redux";
+import {usersApi} from "../api/api";
 
 const initialUsersState: initialUsersStateType = {
     users: [],
@@ -60,11 +62,10 @@ export const userReducer = (state = initialUsersState, action: UserActionsType) 
 
 
 // actions
-
-export const followUser = (userId: number) => {
+export const followSuccess = (userId: number) => {
     return {type: 'FOLLOW-USER', userId} as const
 }
-export const unfollowUser = (userId: number) => {
+export const unfollowSuccess = (userId: number) => {
     return {type: 'UNFOLLOW-USER', userId} as const
 }
 export const setUsers = (users: UserType[]) => {
@@ -83,10 +84,40 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
     return {type: 'TOGGLE-FOLLOWING-PROGRESS', isFetching, userId} as const
 }
 
-// types
+//thunk
+export const getUsers = (currentPage: number,pageSize:number) => (dispatch:Dispatch) => {
+    dispatch(setToggleIsFetching(true))
+    usersApi.getUsers(currentPage,pageSize)
+        .then((res: any) => {
+            dispatch(setToggleIsFetching(false))
+            dispatch(setUsers(res.items))
+            dispatch(setTotalCount(res.totalCount))
+        })
+}
+export const follow = (userId:number) => (dispatch:Dispatch) => {
+    dispatch(toggleFollowingInProgress(true,userId))
+    usersApi.follow(userId)
+        .then((res: any) => {
+            if (res.data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleFollowingInProgress(false,userId))
+        })
+}
+export const unfollow = (userId:number) => (dispatch:Dispatch) => {
+    dispatch(toggleFollowingInProgress(true,userId))
+    usersApi.unfollow(userId)
+        .then((res: any) => {
+            if (res.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleFollowingInProgress(false,userId))
+        })
+}
 
-type UserActionsType = ReturnType<typeof followUser>
-    | ReturnType<typeof unfollowUser>
+// types
+type UserActionsType = ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | SetUsersType
     | SetCurrentPageType
     | SetTotalCountType

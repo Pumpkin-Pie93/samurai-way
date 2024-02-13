@@ -9,18 +9,24 @@ export const usersApi = {
    getUsers(currentPage = 1,pageSize = 4){
       return instance.get(`users?page=${currentPage}&count=${pageSize}`)
           .then(res=> res.data)
-   }
-}
-
-export const followApi = {
-   follow(userId:number){
-    return instance.post(`follow/${userId}`, {})
    },
-   unfollow(userId:number){
-      return instance.delete(`follow/${userId}`)
-   }
-
+    follow(userId:number){
+        return instance.post(`follow/${userId}`, {})
+    },
+    unfollow(userId:number){
+        return instance.delete(`follow/${userId}`)
+    }
 }
+
+// export const followApi = {
+//    follow(userId:number){
+//     return instance.post(`follow/${userId}`, {})
+//    },
+//    unfollow(userId:number){
+//       return instance.delete(`follow/${userId}`)
+//    }
+//
+// }
 
 export const authApi = {
    authMe(){
