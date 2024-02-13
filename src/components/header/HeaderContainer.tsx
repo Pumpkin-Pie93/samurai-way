@@ -1,26 +1,15 @@
 import React from 'react';
-import s from './Header.module.css'
-import {NavLink, RouteComponentProps} from "react-router-dom";
 import {Header} from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getAuth} from "../../redux/auth-reducer";
-import {authApi} from "../../api/api";
+import {authMe} from "../../redux/auth-reducer";
 
 
 class HeaderContainer extends React.Component<any, any> {
 
     componentDidMount() {
-       authApi.authMe()
-            .then((res: any) => {
-                if (res.data.resultCode === 0) {
-                    let {id, email, login} = res.data.data
-                    this.props.getAuth(id, email, login)
-                }
-            })
+        this.props.authMe()
     }
-
     render() {
         return <Header {...this.props}/>
     }
@@ -33,7 +22,7 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-export default connect(mapStateToProps, {getAuth})(HeaderContainer)
+export default connect(mapStateToProps, {authMe})(HeaderContainer)
 
 
 type AuthMeResponseType = {

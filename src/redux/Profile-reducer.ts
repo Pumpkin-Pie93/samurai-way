@@ -1,4 +1,6 @@
 import {PostsPageType, UserProfileResponseType, UserProfileType} from "./Store";
+import {Dispatch} from "redux";
+import {usersApi} from "../api/api";
 
 const initialState = {
     postsData: [
@@ -80,4 +82,13 @@ export const UpdateNewPostTextAC = (newText: string) => {
 
 export const setUserProfile = (profile:UserProfileResponseType) => {
     return {type:'SET-USER-PROFILE',profile}as const
+}
+
+//thunks
+
+export const getUserProfile = (userId:number) => (dispatch: Dispatch) => {
+    usersApi.getProfile(userId)
+        .then((res: any) => {
+            dispatch(setUserProfile(res.data))
+        })
 }
