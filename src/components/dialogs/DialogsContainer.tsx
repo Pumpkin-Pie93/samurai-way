@@ -13,12 +13,10 @@ type MapStatePropsType = {
         newMessageBody: string,
         isAuth: boolean
 }
-
 type MapDispatchPropsType = {
     sendMessage: () => void,
     updateNewMessageBody: (body: string) => void
 }
-
 export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
 //props
@@ -30,7 +28,6 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType => {
         isAuth: state.auth.isAuth
     }
 }
-
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         sendMessage: () => {
@@ -43,7 +40,3 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
 }
 
 export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs)
-// //
-// let AuthRedirectComponent = WithAuthRedirect(Dialogs)
-// //
-// export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)

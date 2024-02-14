@@ -5,6 +5,8 @@ import {follow, getUsers, setCurrentPage, toggleFollowingInProgress, unfollow} f
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
+import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 //types
@@ -67,10 +69,18 @@ class UsersContainer extends React.Component<UsersPropsType> {
 }
 
 //component
-export default connect(mapStateToProps, {
+// export default connect(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setCurrentPage,
+//     toggleFollowingInProgress,
+//     getUsers
+// })(UsersContainer)
+
+export default compose<React.ComponentType>(connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     toggleFollowingInProgress,
     getUsers
-})(UsersContainer)
+}),WithAuthRedirect)(UsersContainer)

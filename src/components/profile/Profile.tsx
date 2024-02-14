@@ -2,6 +2,7 @@ import React from 'react';
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 import {MyPostsContainer} from "./myPosts/MyPostsContainer";
 
+//component
 export const Profile = (props:any) => {
     return (
         <div>

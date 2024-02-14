@@ -4,10 +4,12 @@ import {NavLink} from "react-router-dom";
 import {FriendsItemsType} from "../../redux/Store";
 import {Friends} from "../friends/Friends";
 
+//types
 type NavBarPropsType = {
     friends: FriendsItemsType[]
 }
 
+//component
 export const Navbar = (props:NavBarPropsType) => {
     return (
         <div>
