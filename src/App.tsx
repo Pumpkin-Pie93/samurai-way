@@ -7,7 +7,7 @@ import {Music} from "./components/music/Music";
 import {News} from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
 import {store} from "./redux/redux-store";
-import {DialogsContainer} from "./components/dialogs/DialogsContainer";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/Users-container";
 import HeaderContainer from "./components/header/HeaderContainer";
 import {Login} from "./components/login/Login";
