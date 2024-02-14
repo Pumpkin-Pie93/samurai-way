@@ -2,12 +2,14 @@ import React from 'react';
 import s from "./ProfileInfo.module.css";
 import {UserProfileResponseType, UserProfileType} from "../../../redux/Store";
 import {Preloader} from "../../common/preloader/Preloader";
+import {ProfileStatus} from './ProfileStatus';
 
 //types
-type ProfileInfoProps = {
+export type ProfileInfoProps = {
     profile: UserProfileResponseType
     myProfile: UserProfileType
 }
+
 //component
 export const ProfileInfo = (props:ProfileInfoProps) => {
 
@@ -27,9 +29,12 @@ export const ProfileInfo = (props:ProfileInfoProps) => {
                     ? props.profile.photos.small
                     :'https://sun9-14.userapi.com/impf/zbNSI7cuoxPKPv57ABtzu3JTL-iVoklYRbiYhA/Wzn22c-XTK0.jpg?size=400x300&quality=96&sign=f63c8984aa34fcfe6097946c107f9111&type=album'}/>
                 <div className={s.description}>
-                    <span>{`FullName: ${props.profile.fullName}`}</span><br/>
-                    <span>{`AboutMe: ${props.profile.aboutMe}`}</span><br/>
-                    <span>{`LookingForAJob: ${props.profile.lookingForAJob}`}</span>
+                    <ProfileStatus
+                        status={'Moon Eternal Make Up!'}
+                    />
+                    {/*<span>{`FullName: ${props.profile.fullName}`}</span><br/>*/}
+                    {/*<span>{`AboutMe: ${props.profile.aboutMe}`}</span><br/>*/}
+                    {/*<span>{`LookingForAJob: ${props.profile.lookingForAJob}`}</span>*/}
                 </div>
             </div>
         </div>

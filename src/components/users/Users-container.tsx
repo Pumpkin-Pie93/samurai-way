@@ -69,14 +69,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
 }
 
 //component
-// export default connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setCurrentPage,
-//     toggleFollowingInProgress,
-//     getUsers
-// })(UsersContainer)
-
 export default compose<React.ComponentType>(connect(mapStateToProps, {
     follow,
     unfollow,
