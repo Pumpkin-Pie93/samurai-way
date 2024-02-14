@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./ProfileInfo.module.css";
 import {UserProfileResponseType, UserProfileType} from "../../../redux/Store";
 import {Preloader} from "../../common/preloader/Preloader";
+import {Redirect} from "react-router-dom";
 
 type ProfileInfoProps = {
     profile: UserProfileResponseType
@@ -12,7 +13,9 @@ export const ProfileInfo = (props:ProfileInfoProps) => {
 
     if (!props.profile){
         return <Preloader/>
+
     }
+
         return (
         <div>
             <div>

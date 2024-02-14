@@ -10,6 +10,7 @@ import {store} from "./redux/redux-store";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/Users-container";
 import HeaderContainer from "./components/header/HeaderContainer";
+import {Login} from "./components/login/Login";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path='/users' component={UsersContainer}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
+                <Route path='/login' component={Login}/>
             </div>
         </div>
     );

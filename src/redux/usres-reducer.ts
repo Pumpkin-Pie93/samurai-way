@@ -39,6 +39,7 @@ export const userReducer = (state = initialUsersState, action: UserActionsType) 
             return {...state, users: [...action.users]}
         }
         case "SET-CURRENT-PAGE": {
+            console.log(action.currentPage)
             return {...state, currentPage: action.currentPage}
         }
         case "SET-TOTAL-COUNT": {
@@ -92,6 +93,7 @@ export const getUsers = (currentPage: number,pageSize:number) => (dispatch:Dispa
             dispatch(setToggleIsFetching(false))
             dispatch(setUsers(res.items))
             dispatch(setTotalCount(res.totalCount))
+            dispatch(setCurrentPage(currentPage))
         })
 }
 export const follow = (userId:number) => (dispatch:Dispatch) => {
