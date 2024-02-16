@@ -7,7 +7,8 @@ const instance = axios.create({
 
 export const usersApi = {
      getProfile(userId: number){
-        return  instance.get(`profile/${userId}`)
+         console.warn('Obsolete method. Please use profileApi object')
+        return  profileApi.getProfile(userId)
     },
    getUsers(currentPage = 1,pageSize = 4){
       return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -20,6 +21,22 @@ export const usersApi = {
         return instance.delete(`follow/${userId}`)
     }
 }
+
+export const profileApi = {
+    getProfile(userId: number){
+        return  instance.get(`profile/${userId}`)
+    },
+    getStatus(userId: number){
+        return instance.get(`profile/status/{userId}`)
+    },
+    updateStatus(newStatus: string){
+        return instance.put(` profile/status`,{newStatus})
+    },
+    setPhoto(){
+        return instance.put(`/profile/photo`)
+    }
+}
+
 export const authApi = {
     me() {
         return instance.get(`auth/me`)

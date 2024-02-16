@@ -9,16 +9,6 @@ let store: StoreType = {
                 {id: 2, message: 'How are you?', likes: 17}
             ],
             newPostText: '',
-            myProfile: {
-                name: 'Polina',
-                id: 30296,
-                uniqueUrlName: null,
-                photos: {
-                    small: 'https://ir.ozone.ru/s3/multimedia-9/c1000/6537874785.jpg' ,
-                    large: 'https://ir.ozone.ru/s3/multimedia-9/c1000/6537874785.jpg',
-                },
-                status: 'Moon Eternal Make Up!'
-            },
             profile: {
                 "aboutMe": null,
                 "contacts": {
@@ -39,7 +29,8 @@ let store: StoreType = {
                     "small":  null,
                     "large":  null
                 }
-            }
+            },
+            status: ''
         },
         dialogsPage: {
             messagesData: [
@@ -163,8 +154,8 @@ export type StateType = {
 export type PostsPageType = {
     postsData: PostItemType[]
     newPostText: string
-    myProfile: UserProfileType
-    profile: UserProfileResponseType
+    profile: UserProfileResponseType | null
+    status: string
 
 }
 export type PostItemType = {

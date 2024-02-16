@@ -10,13 +10,13 @@ import {compose} from "redux";
 
 //types
 type mapStateToPropsType = {
-    profile: UserProfileResponseType
-    myProfile: UserProfileType
+    profile: UserProfileResponseType | null
+    status: string
 }
 //props
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.postsPage.profile,
-    myProfile: state.postsPage.myProfile,
+    status: state.postsPage.status
 })
 //class
 class ProfileContainer extends React.Component<any, any> {
@@ -27,6 +27,7 @@ class ProfileContainer extends React.Component<any, any> {
             userId = 30296
         }
        this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
     }
     render() {
 

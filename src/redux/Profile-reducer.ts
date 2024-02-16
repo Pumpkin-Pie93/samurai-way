@@ -1,6 +1,6 @@
 import {PostsPageType, UserProfileResponseType, UserProfileType} from "./Store";
 import {Dispatch} from "redux";
-import {usersApi} from "../api/api";
+import {profileApi, usersApi} from "../api/api";
 
 const initialState = {
     postsData: [
@@ -8,37 +8,8 @@ const initialState = {
         {id: 2, message: 'How are you?', likes: 17}
     ],
     newPostText: 'it-kamasutra',
-    myProfile: {
-        name: 'Polina',
-        id: 30296,
-        uniqueUrlName: null,
-        photos: {
-            small: null ,
-            large: null,
-        },
-        status: 'Moon Eternal Make Up!'
-    },
-    profile: {
-        "aboutMe": null,
-        "contacts": {
-            "facebook": null,
-            "website": null,
-            "vk": null,
-            "twitter": null,
-            "instagram": null,
-            "youtube": null,
-            "github": null,
-            "mainLink": null
-        },
-        "lookingForAJob": false,
-        "lookingForAJobDescription": null,
-        "fullName": null,
-        "userId": 2,
-        "photos": {
-            "small":  null,
-            "large":  null
-        }
-    }
+    profile: null,
+    status: ''
 }
 
 export const profileReducer = (state: PostsPageType = initialState,action: AllActionsTypes): PostsPageType => {
@@ -55,6 +26,9 @@ export const profileReducer = (state: PostsPageType = initialState,action: AllAc
         case "SET-USER-PROFILE":{
             return {...state, profile: action.profile}
         }
+        case "SET-USER-STATUS":{
+            return {...state, status: action.status}
+        }
         default: return state
     }
 }
@@ -62,10 +36,11 @@ export const profileReducer = (state: PostsPageType = initialState,action: AllAc
 
 //types
 
-export type AllActionsTypes = AddPostAT | UpdateNewPostTextAT | SetUserProfileType
+export type AllActionsTypes = AddPostAT | UpdateNewPostTextAT | SetUserProfileType | SetUserStatusType
 type AddPostAT = ReturnType<typeof AddNewPostAC>
 type UpdateNewPostTextAT = ReturnType<typeof UpdateNewPostTextAC>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
+type SetUserStatusType = ReturnType<typeof setUserStatus>
 
 //actions
 
@@ -84,11 +59,23 @@ export const setUserProfile = (profile:UserProfileResponseType) => {
     return {type:'SET-USER-PROFILE',profile}as const
 }
 
+export const setUserStatus = (status: string) => {
+    return {type:'SET-USER-STATUS',status}as const
+}
+
+
 //thunks
 
 export const getUserProfile = (userId:number) => (dispatch: Dispatch) => {
     usersApi.getProfile(userId)
         .then((res: any) => {
             dispatch(setUserProfile(res.data))
+        })
+}
+
+export const getUserStatus = (userId:number) => (dispatch: Dispatch) => {
+    profileApi.getStatus(userId)
+        .then((res)=> {
+            dispatch(setUserStatus(res.statusText))
         })
 }
