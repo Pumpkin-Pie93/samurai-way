@@ -8,7 +8,7 @@ type ProfileStatusPropsType = {
 
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     state = {
-        editMode: true,
+        editMode: false,
         status: this.props.status
     }
     activateEditMode = () => {
@@ -25,14 +25,20 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         let newStatus = e.currentTarget.value
         this.setState({...this.state,status: newStatus})
 }
+componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if(prevProps.status !== this.props.status){
+            this.setState({status: this.props.status})
+        }
+    console.log('ProfileStatus was updated')
+}
 
-     render() {
+    render() {
         return (
             <>
                 {!this.state.editMode &&
                 <div>
                     <span onDoubleClick={this.activateEditMode}>
-                        Status: {this.props.status}
+                        Status: {this.props.status || '###'}
                     </span>
                 </div>
                 }

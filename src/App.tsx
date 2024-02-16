@@ -24,7 +24,7 @@ function App() {
                 <Route path='/users' component={UsersContainer}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
-                {/*<Route path='/login' component={Login}/>*/}
+                <Route path='/login' component={Login}/>
             </div>
         </div>
     );
