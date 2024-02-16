@@ -7,7 +7,8 @@ import {ProfileStatus} from './ProfileStatus';
 //types
 export type ProfileInfoProps = {
     profile: UserProfileResponseType
-    myProfile: UserProfileType
+    status: string
+    updateStatus: (newStatus: string) => void
 }
 
 //component
@@ -15,9 +16,7 @@ export const ProfileInfo = (props:ProfileInfoProps) => {
 
     if (!props.profile){
         return <Preloader/>
-
     }
-
         return (
         <div>
             <div>
@@ -30,7 +29,8 @@ export const ProfileInfo = (props:ProfileInfoProps) => {
                     :'https://sun9-14.userapi.com/impf/zbNSI7cuoxPKPv57ABtzu3JTL-iVoklYRbiYhA/Wzn22c-XTK0.jpg?size=400x300&quality=96&sign=f63c8984aa34fcfe6097946c107f9111&type=album'}/>
                 <div className={s.description}>
                     <ProfileStatus
-                        status={'Moon Eternal Make Up!'}
+                        status={props.status}
+                        updateStatus={props.updateStatus}
                     />
                     {/*<span>{`FullName: ${props.profile.fullName}`}</span><br/>*/}
                     {/*<span>{`AboutMe: ${props.profile.aboutMe}`}</span><br/>*/}

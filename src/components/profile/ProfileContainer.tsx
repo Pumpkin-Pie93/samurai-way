@@ -2,7 +2,7 @@ import React from 'react'
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile} from "../../redux/Profile-reducer";
+import {getUserProfile, getUserStatus, updateStatus} from "../../redux/Profile-reducer";
 import {UserProfileResponseType, UserProfileType} from "../../redux/Store";
 import {withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -32,12 +32,12 @@ class ProfileContainer extends React.Component<any, any> {
     render() {
 
         return (
-            <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
         );
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile})
+export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile,getUserStatus,updateStatus})
     ,withRouter
     ,WithAuthRedirect)
 (ProfileContainer)

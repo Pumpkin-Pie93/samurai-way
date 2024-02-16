@@ -67,8 +67,9 @@ export const setUserStatus = (status: string) => {
 //thunks
 
 export const getUserProfile = (userId:number) => (dispatch: Dispatch) => {
-    usersApi.getProfile(userId)
+    profileApi.getProfile(userId)
         .then((res: any) => {
+            console.log(res.data)
             dispatch(setUserProfile(res.data))
         })
 }
@@ -76,6 +77,16 @@ export const getUserProfile = (userId:number) => (dispatch: Dispatch) => {
 export const getUserStatus = (userId:number) => (dispatch: Dispatch) => {
     profileApi.getStatus(userId)
         .then((res)=> {
-            dispatch(setUserStatus(res.statusText))
+
+                dispatch(setUserStatus(res.data))
+
+        })
+}
+export const updateStatus = (status:string) => (dispatch: Dispatch) => {
+    profileApi.updateStatus(status)
+        .then((res)=> {
+            if(res.data.resultCode === 0){
+                dispatch(setUserStatus(status))
+            }
         })
 }

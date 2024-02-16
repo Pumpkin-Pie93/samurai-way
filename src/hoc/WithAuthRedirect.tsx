@@ -18,7 +18,7 @@ export function WithAuthRedirect<T>(Component: ComponentType<T>)  {
         let {isAuth, ...restProps} = props
         if (!isAuth) {
             return <Redirect to={'/login'}/>
-        }
+        } else
         return <Component {...restProps as T}/>
     }
 

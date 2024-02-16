@@ -27,10 +27,10 @@ export const profileApi = {
         return  instance.get(`profile/${userId}`)
     },
     getStatus(userId: number){
-        return instance.get(`profile/status/{userId}`)
+        return instance.get(`profile/status/${userId}`)
     },
-    updateStatus(newStatus: string){
-        return instance.put(` profile/status`,{newStatus})
+    updateStatus(status: string){
+        return instance.put(`profile/status`, {status})
     },
     setPhoto(){
         return instance.put(`/profile/photo`)

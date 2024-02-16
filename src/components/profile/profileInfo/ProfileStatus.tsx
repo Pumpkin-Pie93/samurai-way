@@ -1,26 +1,31 @@
-import React from 'react';
-import {ProfileInfoProps} from "./ProfileInfo";
-import {UserProfileResponseType} from "../../../redux/Store";
+import React, {ChangeEvent} from 'react';
+
 
 type ProfileStatusPropsType = {
     status:string
+    updateStatus: (newStatus: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     state = {
-        editMode: true
+        editMode: true,
+        status: this.props.status
     }
     activateEditMode = () => {
-      debugger
-        console.log(this)
         this.setState({
      editMode: true
  })}
     deactivateEditMode=()=>{
-        debugger
- this.setState({
+        this.setState({
      editMode: false
- })}
+        })
+        this.props.updateStatus(this.state.status)
+ }
+    statusChange = (e:ChangeEvent<HTMLInputElement>) => {
+        let newStatus = e.currentTarget.value
+        this.setState({...this.state,status: newStatus})
+}
+
      render() {
         return (
             <>
@@ -35,7 +40,8 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 {this.state.editMode &&
                     <div>
                     <input
-                        value={this.props.status}
+                        onChange={this.statusChange}
+                        value={this.state.status}
                         onDoubleClick={this.deactivateEditMode}
                         onBlur={this.deactivateEditMode}
                         autoFocus={true}
