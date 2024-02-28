@@ -40,5 +40,8 @@ export const profileApi = {
 export const authApi = {
     me() {
         return instance.get(`auth/me`)
+    },
+    login(formData:any){
+      return instance.post(` auth/login`,{formData})
     }
 }

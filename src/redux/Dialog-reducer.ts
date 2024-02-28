@@ -1,15 +1,6 @@
 import {DialogsPageType} from "./Store";
 
-type SendMessageAT = {
-    type: 'SEND-MESSAGE'
-}
 
-type UpdateNewMessageBodyAT = {
-    type: 'UPDATE_NEW_MESSAGE_BODY'
-    body: string
-}
-
-export type AllAT = SendMessageAT | UpdateNewMessageBodyAT
 
 const initialState =  {
     messagesData: [
@@ -36,18 +27,22 @@ export const dialogReducer = (state:DialogsPageType = initialState, action: AllA
             let newState: DialogsPageType = {...state, newMessageBody: action.body}
             return newState;
         case 'SEND-MESSAGE':
-            let body = state.newMessageBody
-            // state.messagesData.push({id: state.messagesData.length, message: body})
-            let stateCopy: DialogsPageType = {...state, messagesData: [{id: state.messagesData.length +1, message: body},...state.messagesData]}
-            stateCopy.newMessageBody = ''
+            let body = action.newMessage
+            // let stateCopy: DialogsPageType = {...state, messagesData: [{id: state.messagesData.length +1, message: body},...state.messagesData]}
+            let stateCopy: DialogsPageType = {
+                ...state,
+                messagesData: [{id: state.messagesData.length +1, message: body},...state.messagesData]}
             return  stateCopy;
         default: return state
     }
 }
 
-export const SendMessageAC = () => {
+//actions
+
+export const SendMessageAC = (newMessage: string) => {
     return {
-        type:'SEND-MESSAGE'
+        type:'SEND-MESSAGE',
+        newMessage
     } as const
 }
 export const UpdateNewMessageBodyAC = (body: string) => {
@@ -55,3 +50,11 @@ export const UpdateNewMessageBodyAC = (body: string) => {
         type:'UPDATE_NEW_MESSAGE_BODY', body
     } as const
 }
+
+//types
+
+type SendMessageAT = ReturnType<typeof SendMessageAC>
+
+type UpdateNewMessageBodyAT = ReturnType<typeof UpdateNewMessageBodyAC>
+
+export type AllAT = SendMessageAT | UpdateNewMessageBodyAT

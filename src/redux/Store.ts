@@ -122,9 +122,10 @@ export const UpdateNewPostTextAC = (newText: string) => {
         type: 'UPDATE-NEW-POST-TEXT', newText: newText
     } as const
 }
-export const SendMessageAC = () => {
+export const SendMessageAC = (newMessage:string) => {
     return {
-        type: 'SEND-MESSAGE'
+        type: 'SEND-MESSAGE',
+        newMessage
     } as const
 }
 export const UpdateNewMessageBodyAC = (body: string) => {
