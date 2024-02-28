@@ -15,7 +15,7 @@ const initialState = {
 export const profileReducer = (state: PostsPageType = initialState,action: AllActionsTypes): PostsPageType => {
     switch (action.type) {
         case 'ADD-POST':
-            let newPost = {id: state.postsData.length, message: state.newPostText, likes: 0}
+            let newPost = {id: state.postsData.length, message: action.newPost, likes: 0}
             // state.postsData.push(newPost)
             let myStateCopy: PostsPageType = {...state, postsData: [newPost,...state.postsData]}
             myStateCopy.newPostText = ''
@@ -44,9 +44,10 @@ type SetUserStatusType = ReturnType<typeof setUserStatus>
 
 //actions
 
-export const AddNewPostAC = () => {
+export const AddNewPostAC = (newPost:string) => {
     return {
-        type:'ADD-POST'
+        type:'ADD-POST',
+        newPost
     } as const
 }
 export const UpdateNewPostTextAC = (newText: string) => {

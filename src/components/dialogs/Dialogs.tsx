@@ -8,24 +8,10 @@ import {Field, reduxForm} from "redux-form";
 
 export const Dialogs = (props: DialogsPropsType) => {
 	
-	const dialogs = props.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}
-	                                                        avatar={dialog.avatar}/>)
+	const dialogs = props.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
 	const messages = props.messages.map(message => <Message key={message.id} message={message.message}/>)
-	
-	let textAreaRef = useRef<HTMLTextAreaElement>(null)
-	
 	let newMessageBody = props.newMessageBody
 	
-	const onClickHandler = () => {
-		// if (textAreaRef.current !== null) {
-		// 	props.sendMessage(value)
-		// }
-	}
-	
-	const onNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		let body = e.currentTarget.value
-		props.updateNewMessageBody(body)
-	}
     const addNewMessage = (value:any) => {
         props.sendMessage(value.newMessageBody)
 	}

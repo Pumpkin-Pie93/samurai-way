@@ -5,7 +5,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import React from "react";
-import {SendMessageAC, UpdateNewMessageBodyAC} from "../../redux/Dialog-reducer";
+import {SendMessageAC} from "../../redux/Dialog-reducer";
 
 //types
 type MapStatePropsType = {
@@ -16,7 +16,6 @@ type MapStatePropsType = {
 }
 type MapDispatchPropsType = {
     sendMessage: (value:string) => void,
-    updateNewMessageBody: (body: string) => void
 }
 export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -31,11 +30,8 @@ let mapStateToProps = (state: AppStateType):MapStatePropsType => {
 }
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
-        sendMessage: (value:string) => {
+        sendMessage: (value: string) => {
             dispatch(SendMessageAC(value))
-        },
-        updateNewMessageBody: (body: string) => {
-            dispatch(UpdateNewMessageBodyAC(body))
         }
     }
 }
