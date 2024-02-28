@@ -22,3 +22,7 @@ export type AppStateType = ReturnType<rootReducerType>
 export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))
 
 // console.log(store.getState())
+
+
+// @ts-ignore
+window.store = store
