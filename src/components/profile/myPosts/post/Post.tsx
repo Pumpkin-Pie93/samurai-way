@@ -19,7 +19,7 @@ export const Post = (props: any) => {
                 {props.message}
                 <div className={s.likes}>
                     <button onClick={onClickHandler}>like</button>
-                    <span>likes: {likes}</span>
+                    <span>likes:{props.likes}</span>
                 </div>
             </div>
         </div>

@@ -2,8 +2,7 @@ import React from 'react'
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile, getUserStatus, updateStatus} from "../../redux/Profile-reducer";
-import {UserProfileResponseType, UserProfileType} from "../../redux/Store";
+import {getUserProfile, getUserStatus, UserProfileResponseType} from "../../redux/Profile-reducer";
 import {withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
@@ -36,7 +35,7 @@ class ProfileContainer extends React.Component<any, any> {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile,getUserStatus,updateStatus})
+export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile,getUserStatus})
     ,withRouter
     ,WithAuthRedirect)
 (ProfileContainer)

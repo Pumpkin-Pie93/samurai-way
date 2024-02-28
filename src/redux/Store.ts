@@ -1,4 +1,4 @@
-import {profileReducer} from "./Profile-reducer";
+import {PostsPageType, profileReducer} from "./Profile-reducer";
 import {dialogReducer, DialogsPageType} from "./Dialog-reducer";
 
 // let store: StoreType = {
@@ -110,61 +110,10 @@ import {dialogReducer, DialogsPageType} from "./Dialog-reducer";
 //         }
 //     }
 
-//actions
-
-export const AddNewPostAC = (newPost:string) => {
-    return {
-        type: 'ADD-POST',
-        newPost
-    } as const
-}
-export const UpdateNewPostTextAC = (newText: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT', newText: newText
-    } as const
-}
-export const SendMessageAC = (newMessage:string) => {
-    return {
-        type: 'SEND-MESSAGE',
-        newMessage
-    } as const
-}
-export const UpdateNewMessageBodyAC = (body: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_BODY', body
-    } as const
-}
-
 //types
 
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: () => void
-    getState: () => StateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    subscribe: (observer: () => void) => void
-    dispatch: (action: any) => void
-}
-export type StateType = {
-    postsPage: PostsPageType
-    dialogsPage: DialogsPageType
-    sidebar: SideBarType
-    usersPage: UsersPageType
-    auth: AuthDataType | {}
-}
-export type PostsPageType = {
-    postsData: PostItemType[]
-    newPostText: string
-    profile: UserProfileResponseType | null
-    status: string
 
-}
-export type PostItemType = {
-    id: number,
-    message: string,
-    likes: number
-}
+
 export type MessagesDataType = {
     id: number
     message: string
@@ -175,9 +124,6 @@ export type DialogsDataType = {
     avatar: string
 }
 
-export type SideBarType = {
-    friends: FriendsItemsType[]
-}
 export type FriendsItemsType = {
     id: number
     name: string
@@ -212,33 +158,9 @@ export type UserProfileType = {
     status: null | string
     followed?: boolean
 }
-export type UserProfileResponseType = {
-    "aboutMe": string | null,
-    "contacts": {
-        "facebook": string | null,
-        "website": string | null,
-        "vk": string | null,
-        "twitter": string | null,
-        "instagram": string | null,
-        "youtube": null,
-        "github": string | null,
-        "mainLink": string | null
-    },
-    "lookingForAJob": boolean,
-    "lookingForAJobDescription": string | null,
-    "fullName": string | null,
-    "userId": number | null,
-    "photos": {
-        "small": string | null,
-        "large": string | null
-    }
-}
+
 export type AuthDataType = {
     id: number| null ,
     email: null | string,
     login: null | string
 }
-
-// window.store = store
-
-// export default store

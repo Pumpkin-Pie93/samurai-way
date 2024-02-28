@@ -1,13 +1,44 @@
-import {PostsPageType, UserProfileResponseType, UserProfileType} from "./Store";
 import {Dispatch} from "redux";
 import {profileApi, usersApi} from "../api/api";
+
+export type PostItemType = {
+    id: number,
+    message: string,
+    likes: number
+}
+export type UserProfileResponseType = {
+    "aboutMe": string | null,
+    "contacts": {
+        "facebook": string | null,
+        "website": string | null,
+        "vk": string | null,
+        "twitter": string | null,
+        "instagram": string | null,
+        "youtube": null,
+        "github": string | null,
+        "mainLink": string | null
+    },
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string | null,
+    "fullName": string | null,
+    "userId": number | null,
+    "photos": {
+        "small": string | null,
+        "large": string | null
+    }
+}
+export type PostsPageType = {
+    postsData: PostItemType[]
+    profile: UserProfileResponseType | null
+    status: string
+    
+}
 
 const initialState = {
     postsData: [
         {id: 1, message: 'Hi,it\'s my first post', likes: 33},
         {id: 2, message: 'How are you?', likes: 17}
     ],
-    newPostText: 'it-kamasutra',
     profile: null,
     status: ''
 }
@@ -18,12 +49,8 @@ export const profileReducer = (state: PostsPageType = initialState,action: AllAc
             let newPost = {id: state.postsData.length, message: action.newPost, likes: 0}
             // state.postsData.push(newPost)
             let myStateCopy: PostsPageType = {...state, postsData: [newPost,...state.postsData]}
-            myStateCopy.newPostText = ''
             return myStateCopy;
-        case 'UPDATE-NEW-POST-TEXT':
-            // state.newPostText = action.newText
-            return {...state, newPostText: action.newText};
-        case "SET-USER-PROFILE":{
+         case "SET-USER-PROFILE":{
             return {...state, profile: action.profile}
         }
         case "SET-USER-STATUS":{
@@ -36,9 +63,8 @@ export const profileReducer = (state: PostsPageType = initialState,action: AllAc
 
 //types
 
-export type AllActionsTypes = AddPostAT | UpdateNewPostTextAT | SetUserProfileType | SetUserStatusType
+export type AllActionsTypes = AddPostAT | SetUserProfileType | SetUserStatusType
 type AddPostAT = ReturnType<typeof AddNewPostAC>
-type UpdateNewPostTextAT = ReturnType<typeof UpdateNewPostTextAC>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
 type SetUserStatusType = ReturnType<typeof setUserStatus>
 
@@ -50,12 +76,6 @@ export const AddNewPostAC = (newPost:string) => {
         newPost
     } as const
 }
-export const UpdateNewPostTextAC = (newText: string) => {
-    return {
-        type:'UPDATE-NEW-POST-TEXT', newText : newText
-    } as const
-}
-
 export const setUserProfile = (profile:UserProfileResponseType) => {
     return {type:'SET-USER-PROFILE',profile}as const
 }
@@ -81,13 +101,5 @@ export const getUserStatus = (userId:number) => (dispatch: Dispatch) => {
 
                 dispatch(setUserStatus(res.data))
 
-        })
-}
-export const updateStatus = (status:string) => (dispatch: Dispatch) => {
-    profileApi.updateStatus(status)
-        .then((res)=> {
-            if(res.data.resultCode === 0){
-                dispatch(setUserStatus(status))
-            }
         })
 }
