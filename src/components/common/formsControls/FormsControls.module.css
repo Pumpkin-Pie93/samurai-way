@@ -1,0 +1,19 @@
+
+
+.formControl{
+    margin: 5px 0;
+    & div{
+        margin: 2px;
+    }
+    & span{
+        color:red;
+    }
+   & input, & textarea {
+        border: none;
+    }
+}
+
+.error{
+    outline: 2px solid red;
+    color: red
+}
